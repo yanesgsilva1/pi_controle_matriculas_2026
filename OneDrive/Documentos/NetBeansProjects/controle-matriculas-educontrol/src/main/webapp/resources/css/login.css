@@ -1,0 +1,109 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Fundo azul */
+.page-container {
+    background-color: #1E73BE; /* azul */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cabeçalho */
+.header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+.header h3 {
+    margin: 5px 0 0;
+    font-size: 16px;
+}
+
+/* Labels alinhadas ao lado dos campos */
+.login-box label {
+    display: inline-block;
+    width: 80px;        /* largura fixa para alinhar labels */
+    text-align: right;  /* texto encostado no campo */
+    margin-right: 12px; /* espaço entre label e campo */
+    font-weight: bold;
+    color: #333;
+ }
+
+/* Campos de entrada */
+.login-box input {
+    display: inline-block;
+    width: 150px;       /* largura do campo */
+    padding: 6px;
+    border: 1px solid #1e90ff; /* borda azul */
+    border-radius: 4px;
+}
+
+/* Caixa branca */
+.login-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    
+}
+
+/* Campos de entrada com borda azul */
+.ui-inputfield {
+    border: 1px solid #1e90ff !important; /* azul */
+    box-shadow: none !important;          /* remove sombra padrão */
+}
+
+/* Botões coloridos */
+.btn {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+.btn-green { background-color: #28a745; }
+.btn-blue { background-color: #007bff; }
+.btn-red { background-color: #dc3545; }
+
+/* Remove a tarja vermelha das mensagens de erro */
+.ui-message-error,
+.ui-messages-error {
+    background: none !important;   /* remove fundo */
+    border: none !important;       /* remove borda */
+    color: #dc3545 !important;     /* mantém texto vermelho */
+    padding: 0 !important;         /* remove espaçamento interno */
+    margin-top: 10px !important;               /* afasta do campo */
+    display: block;                /* força ficar abaixo do campo */
+}
+
+/* Dica */
+.tip {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #666;
+    
+}
+/* Remove o cursor de digitação de todos os elementos por padrão */
+body, label, .ui-message, .ui-message-error {
+    caret-color: transparent; /* oculta o cursor */
+}
+
+/* Mantém o cursor de digitação apenas nos campos de entrada */
+input, textarea, .ui-inputfield {
+    caret-color: auto;        /* mostra o cursor normalmente */
+}
+
