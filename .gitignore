@@ -1,0 +1,11 @@
+# Ignorar pasta de build do Maven
+controle-matriculas-educontrol/target/
+
+# Ignorar configurações locais do NetBeans
+/nbproject/private/
+/nb-configuration.xml
+
+# Ignorar arquivos temporários
+*.log
+*.tmp
+*.bak
