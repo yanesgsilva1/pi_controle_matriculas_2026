@@ -38,13 +38,11 @@
             <version>5.4.33.Final</version>
         </dependency>
  
-        <!-- Hibernate EntityManager (JPA) -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.4.33.Final</version>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.5.0.Final</version>
         </dependency>
- 
         <!-- JPA 2.2 API (provided pelo GlassFish) -->
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -86,6 +84,12 @@
     </dependencies>
  
     <build>
+        <!-- Garante que src/main/resources seja incluído no deploy -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.controle.matriculas.educontrol;
+package controle.matriculas.educontrol.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -40,7 +40,7 @@ public class LoginBean implements Serializable {
     
     public String login() {
         if("admin".equals(usuario) && "admin".equals(senha)) {
-            return "index.xhtml?faces-redirect=true"; // redireciona para o menu principal
+            return "menuPrincipal.xhtml?faces-redirect=true"; // redireciona para o menu principal
         } else {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Usuário ou Senha Inválidos", null);

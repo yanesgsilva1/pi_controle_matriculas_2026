@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Conexão com MySQL -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/controle_matriculas?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">lrsl2308</property>
+
+        <!-- Dialeto do MySQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Mostrar SQL no console -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Atualizar esquema automaticamente -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <!-- Formata os SQLs exibidos para leitura no log -->
+        <property name="hibernate.format_sql">true</property>
+
+
+        <!-- Registrar entidades -->
+        <mapping class="controle.matriculas.educontrol.model.Pessoa"/>
+        <!--<mapping class="controle.matriculas.educontrol.model.Disciplina"/>
+        <mapping class="controle.matriculas.educontrol.model.Matricula"/>
+        <mapping class="controle.matriculas.educontrol.model.Usuario"/>-->
+    </session-factory>
+</hibernate-configuration>

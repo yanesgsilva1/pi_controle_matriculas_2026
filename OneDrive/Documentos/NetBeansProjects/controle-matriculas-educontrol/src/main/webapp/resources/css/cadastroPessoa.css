@@ -1,0 +1,104 @@
+.titulo {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.painel-dados, .painel-lista {
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 6px;
+}
+
+.grid-dados .label {
+    font-weight: bold;
+    color: #333;
+}
+
+.botoes {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.btn-salvar  { 
+    background-color: #27ae60 !important; 
+    border-color: #27ae60 !important;
+    color: white;
+}
+.btn-editar  { 
+    background-color: #2980b9 !important; 
+    border-color: #2980b9 !important; 
+    color: white;
+}
+.btn-excluir { 
+    background-color: #e74c3c !important; 
+    border-color: #e74c3c !important; 
+    color: white;
+}
+.btn-limpar  { 
+    background-color: #bdc3c7 !important; 
+    border-color: #bdc3c7 !important; 
+    color: #333 !important; 
+    
+}
+.tabela-pessoas .ui-datatable-thead th {
+    background-color: #2c5282 !important;
+     color: white !important;
+}
+.tabela-pessoas .ui-datatable-even { 
+    background-color: #f7f9fc; 
+}
+/* Remove todas as bordas e linhas do panelGrid (dados da pessoa) */
+.ui-panelgrid,
+.ui-panelgrid td,
+.ui-panelgrid tr,
+.ui-panelgrid .ui-widget-content,
+.ui-panelgrid .ui-panelgrid-cell {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove linhas horizontais e verticais */
+.ui-panelgrid td,
+.ui-panelgrid tr {
+    border: none !important;
+}
+
+/* Ajusta espaçamento para manter visual limpo */
+.ui-panelgrid td {
+    padding: 6px 0 !important;
+}
+
+/* Remove bordas e linhas da tabela de lista de pessoas */
+.tabela-pessoas .ui-datatable-tablewrapper table,
+.tabela-pessoas .ui-datatable-tablewrapper td,
+.tabela-pessoas .ui-datatable-tablewrapper th,
+.tabela-pessoas .ui-widget-content,
+.tabela-pessoas .ui-datatable-data tr,
+.tabela-pessoas .ui-datatable-data td {
+    border: none !important;
+    box-shadow: none !important;
+}
+/* Padroniza tamanho dos campos de texto e combo */
+.ui-inputfield,
+.ui-inputmask,
+.ui-selectonemenu {
+    width: 320px !important;
+}
+
+
+.tabela-pessoas {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+.value-right {
+    text-align: right;
+}
+.value-right input, 
+.value-right .ui-inputfield {
+    float: right;
+}
+
+
