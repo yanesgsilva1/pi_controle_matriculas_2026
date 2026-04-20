@@ -9,14 +9,16 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 /**
  *
  * @author leo
  */
 
-@ManagedBean (name = "loginBean")
+@ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
+
     private String usuario;
     private String senha;
 
@@ -35,11 +37,10 @@ public class LoginBean implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     // Ações da tela de login
-    
     public String login() {
-        if("admin".equals(usuario) && "admin".equals(senha)) {
+        if ("admin".equals(usuario) && "admin".equals(senha)) {
             return "menuPrincipal.xhtml?faces-redirect=true"; // redireciona para o menu principal
         } else {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,

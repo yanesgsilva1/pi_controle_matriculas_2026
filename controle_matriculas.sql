@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `controle_matriculas` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `controle_matriculas`;
 -- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
 -- Host: localhost    Database: controle_matriculas
@@ -26,12 +28,12 @@ CREATE TABLE `disciplina` (
   `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nomeDisciplina` varchar(100) NOT NULL,
   `cargaHoraria` int(11) NOT NULL,
+  `limiteAlunos` int(11) NOT NULL,
   `idProfessor` int(11) NOT NULL,
-  `limiteAlunos` int(11) DEFAULT NULL,
   PRIMARY KEY (`codigo`),
-  KEY `idProfessor` (`idProfessor`),
-  CONSTRAINT `disciplina_ibfk_1` FOREIGN KEY (`idProfessor`) REFERENCES `pessoa` (`idPessoa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `fk_professor` (`idProfessor`),
+  CONSTRAINT `fk_professor` FOREIGN KEY (`idProfessor`) REFERENCES `pessoa` (`idPessoa`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,38 +42,38 @@ CREATE TABLE `disciplina` (
 
 LOCK TABLES `disciplina` WRITE;
 /*!40000 ALTER TABLE `disciplina` DISABLE KEYS */;
+INSERT INTO `disciplina` VALUES (1,'TADAW',60,20,30),(2,'TADEW',60,20,32),(3,'TASOP',60,25,31),(5,'Matemática',35,15,35);
 /*!40000 ALTER TABLE `disciplina` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `matricula`
+-- Table structure for table `matriculas`
 --
 
-DROP TABLE IF EXISTS `matricula`;
+DROP TABLE IF EXISTS `matriculas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `matricula` (
+CREATE TABLE `matriculas` (
   `idMatricula` int(11) NOT NULL AUTO_INCREMENT,
-  `idDisciplina` int(11) NOT NULL,
   `idAluno` int(11) NOT NULL,
-  `dataMatricula` date NOT NULL,
+  `codigoDisciplina` int(11) NOT NULL,
   `valorPago` decimal(10,2) DEFAULT NULL,
   `periodo` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idMatricula`),
-  KEY `idDisciplina` (`idDisciplina`),
-  KEY `idAluno` (`idAluno`),
-  CONSTRAINT `matricula_ibfk_1` FOREIGN KEY (`idDisciplina`) REFERENCES `disciplina` (`codigo`),
-  CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idAluno`) REFERENCES `pessoa` (`idPessoa`)
+  KEY `fk_disciplina` (`codigoDisciplina`),
+  KEY `fk_aluno` (`idAluno`),
+  CONSTRAINT `fk_aluno` FOREIGN KEY (`idAluno`) REFERENCES `pessoa` (`idPessoa`),
+  CONSTRAINT `fk_disciplina` FOREIGN KEY (`codigoDisciplina`) REFERENCES `disciplina` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `matricula`
+-- Dumping data for table `matriculas`
 --
 
-LOCK TABLES `matricula` WRITE;
-/*!40000 ALTER TABLE `matricula` DISABLE KEYS */;
-/*!40000 ALTER TABLE `matricula` ENABLE KEYS */;
+LOCK TABLES `matriculas` WRITE;
+/*!40000 ALTER TABLE `matriculas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `matriculas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,7 +95,7 @@ CREATE TABLE `pessoa` (
   PRIMARY KEY (`idPessoa`),
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +104,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES (1,'Leandro','aas','ds','(22) 32323-2323','323.243.243-43','l@email','ALUNO'),(2,'Yane','Rua C','Ba','(71) 81818-1818','837.328.337-22','y@email.com','ALUNO'),(3,'Wendel','Rua H','Ba','(71) 89200-3029','043.242.340-32','w@email.com','ALUNO');
+INSERT INTO `pessoa` VALUES (1,'Leandro','aas','ds','(22) 32323-2323','323.243.243-43','l@email','ALUNO'),(2,'Yane','Rua C','Ba','(71) 81818-1818','837.328.337-22','y@email.com','ALUNO'),(30,'Andre Portugal','Rua Fvc','BA','(71) 98989-8989','093.843.209-43','a@email.com','PROFESSOR'),(31,'Arleys','Rua TTT','BA','(71) 82827-2827','621.618.817-32','ay@email.com','PROFESSOR'),(32,'Afonso','Rua DDD','BA','(71) 87628-7326','907.389.473-28','af@email.com','PROFESSOR'),(33,'Aristoteles','Rua EYEU','BA','(71) 98789-7897','363.536.536-53','arsl@email.com','PROFESSOR'),(34,'Wendel','Rua R','BA','(71) 89282-7282','373.883.992-82','w@email.com','ALUNO'),(35,'Gilson','Rua WWW','BA','(71) 98762-7364','734.883.727-27','g@email.com','PROFESSOR');
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-19 15:42:41
+-- Dump completed on 2026-04-20 19:19:03

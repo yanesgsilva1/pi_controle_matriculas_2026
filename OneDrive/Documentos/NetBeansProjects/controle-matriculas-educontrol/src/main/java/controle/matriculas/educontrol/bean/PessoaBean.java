@@ -35,17 +35,30 @@ public class PessoaBean implements Serializable {
     }
 
     // Getters e Setters
-    public Pessoa getPessoa() { return pessoa; }
-    public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
 
-    public List<Pessoa> getListaPessoas() { return listaPessoas; }
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
-    public Pessoa getPessoaSelecionada() { return pessoaSelecionada; }
+    public List<Pessoa> getListaPessoas() {
+        return listaPessoas;
+    }
+
+    public Pessoa getPessoaSelecionada() {
+        return pessoaSelecionada;
+    }
+
     public void setPessoaSelecionada(Pessoa pessoaSelecionada) {
         this.pessoaSelecionada = pessoaSelecionada;
     }
 
-    public Integer getIdPessoaSelecionada() { return idPessoaSelecionada; }
+    public Integer getIdPessoaSelecionada() {
+        return idPessoaSelecionada;
+    }
+
     public void setIdPessoaSelecionada(Integer idPessoaSelecionada) {
         this.idPessoaSelecionada = idPessoaSelecionada;
     }
@@ -79,15 +92,15 @@ public class PessoaBean implements Serializable {
     }
 
     // Consultar todos os registros
-public void consultar() {
-    try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-        Query<Pessoa> q = s.createQuery("from Pessoa order by nomePessoa", Pessoa.class);
-        listaPessoas = q.list();
-    } catch (Exception e) {
-        addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao consultar pessoas.");
-        e.printStackTrace();
+    public void consultar() {
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Pessoa> q = s.createQuery("from Pessoa order by nomePessoa", Pessoa.class);
+            listaPessoas = q.list();
+        } catch (Exception e) {
+            addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao consultar pessoas.");
+            e.printStackTrace();
+        }
     }
-}
 
     // Editar — cria cópia do objeto selecionado para não afetar a lista
     public void editar() {
@@ -151,6 +164,6 @@ public void consultar() {
     // Método auxiliar para mensagens — evita repetição de código
     private void addMsg(FacesMessage.Severity severity, String mensagem) {
         FacesContext.getCurrentInstance().addMessage(null,
-            new FacesMessage(severity, mensagem, null));
+                new FacesMessage(severity, mensagem, null));
     }
 }

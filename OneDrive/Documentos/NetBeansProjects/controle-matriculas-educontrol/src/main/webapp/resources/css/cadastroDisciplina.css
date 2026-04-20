@@ -1,5 +1,5 @@
 /* =============================================
-   Cadastro de Pessoas - cadastroPessoa.css
+   Cadastro de Disciplina - cadastroDisciplina.css
    ============================================= */
 
 * { box-sizing: border-box; }
@@ -76,7 +76,6 @@ html, body {
     font-size: 13px !important;
     display: inline-flex !important;
     align-items: center !important;
-    
 }
 
 .ui-selectonemenu .ui-selectonemenu-label {
@@ -154,12 +153,12 @@ html, body {
 /* -----------------------------------------------
    TABELA
 ----------------------------------------------- */
-.tabela-pessoas {
+.tabela-disciplina {
     width: 100% !important;
     font-size: 13px !important;
 }
 
-.tabela-pessoas thead th {
+.tabela-disciplina thead th {
     background-color: #2c5282 !important;
     color: #ffffff !important;
     font-weight: bold !important;
@@ -168,25 +167,25 @@ html, body {
     text-align: center !important;
 }
 
-.tabela-pessoas tbody td {
+.tabela-disciplina tbody td {
     padding: 4px 8px !important;
     border: 1px solid #d0d8e4 !important;
     vertical-align: middle !important;
 }
 
-.tabela-pessoas .ui-datatable-odd  { background-color: #ffffff !important; }
-.tabela-pessoas .ui-datatable-even { background-color: #e8f0f7 !important; }
+.tabela-disciplina .ui-datatable-odd  { background-color: #ffffff !important; }
+.tabela-disciplina .ui-datatable-even { background-color: #e8f0f7 !important; }
 
-.tabela-pessoas tbody tr { cursor: pointer !important; }
+.tabela-disciplina tbody tr { cursor: pointer !important; }
 
-.tabela-pessoas tbody tr.linha-selecionada td {
+.tabela-disciplina tbody tr.linha-selecionada td {
     background-color: #b8d4f0 !important;
     font-weight: bold !important;
 }
 
-.tabela-pessoas tbody tr:hover td { background-color: #d0e8ff !important; }
+.tabela-disciplina tbody tr:hover td { background-color: #d0e8ff !important; }
 
-.tabela-pessoas .ui-paginator {
+.tabela-disciplina .ui-paginator {
     background: transparent !important;
     border: none !important;
     padding: 4px 0 !important;

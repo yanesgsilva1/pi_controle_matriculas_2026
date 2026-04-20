@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro de Disciplinas</title>
+        <h:outputStylesheet library="css" name="cadastroDisciplina.css"/>
+    </h:head>
+
+    <h:body>
+        <h:form id="formDisciplina">
+
+            <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+
+            <!-- Dados da Disciplina -->
+            <p:fieldset legend="Dados da Disciplina" style="margin-bottom:8px">
+                <p:panelGrid columns="2" styleClass="painel-dados" style="width:100%" columnClasses="label,value-right">
+
+                    <p:outputLabel for="nome" value="Nome:"/>
+                    <p:inputText id="nome" 
+                                 value="#{disciplinaBean.disciplina.nomeDisciplina}" 
+                                 required="true"
+                                 requiredMessage="Nome é obrigatório."/>
+
+                    <p:outputLabel for="carga" value="Carga Horária:"/>
+                    <p:inputText id="carga" 
+                                 value="#{disciplinaBean.disciplina.cargaHoraria}" 
+                                 required="true"
+                                 requiredMessage="Carga horária é obrigatório."/>
+
+                    <p:outputLabel for="professor" value="Professor:"/>
+                    <p:selectOneMenu id="professor" 
+                                     value="#{disciplinaBean.idProfessorSelecionado}" 
+                                     required="true"
+                                     requiredMessage="Seleção do professor é obrigatório."
+                                     style="width:500px">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{disciplinaBean.listaProfessores}" var="prof"
+                                       itemLabel="#{prof.nomePessoa}" itemValue="#{prof.idPessoa}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="limite" value="Limite de Alunos:"/>
+                    <p:inputText id="limite" 
+                                 value="#{disciplinaBean.disciplina.limiteAlunos}" 
+                                 required="true"
+                                 requiredMessage="Seleção do professor é obrigatório."/>
+
+                </p:panelGrid>
+            </p:fieldset>
+
+            <!-- Botões -->
+            <div style="text-align:center; margin:10px 0;">
+                <p:commandButton value="Salvar" 
+                                 styleClass="btn-salvar"
+                                 action="#{disciplinaBean.salvar}" 
+                                 update="formDisciplina"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Editar" 
+                                 styleClass="btn-editar"
+                                 action="#{disciplinaBean.editar}" 
+                                 update="formDisciplina"
+                                 process="@this"
+                                 immediate="true"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Excluir" 
+                                 styleClass="btn-excluir"
+                                 action="#{disciplinaBean.excluir}" 
+                                 update="formDisciplina"
+                                 process="@this"
+                                 onclick="return confirm('Deseja excluir esta disciplina?')"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Limpar" 
+                                 styleClass="btn-limpar"
+                                 action="#{disciplinaBean.limpar}" 
+                                 update="formDisciplina"
+                                 process="@this"
+                                 resetValues="true"
+                                 style="margin:0 4px;"/>
+            </div>
+
+            <!-- Lista de Disciplinas -->
+            <p:fieldset legend="Lista de Disciplinas">
+                <h:outputText value="Total: #{disciplinaBean.listaDisciplinas.size()} registros"
+                              style="font-weight:bold; margin-bottom:8px; display:block"/>
+                <p:dataTable id="tabelaDisciplinas" 
+                             styleClass="tabela-disciplina"
+                             value="#{disciplinaBean.listaDisciplinas}" 
+                             var="d"
+                             paginator="true" 
+                             rows="10"
+                             paginatorPosition="bottom"
+                             emptyMessage="Nenhuma disciplina encontrada."
+                             style="width:100%; font-size:13px"
+                             selectionMode="single"
+                             selection="#{disciplinaBean.disciplinaSelecionada}" 
+                             rowKey="#{d.codigo}"
+                             rowStyleClass="#{disciplinaBean.disciplinaSelecionada.codigo == d.codigo ? 'linha-selecionada' : ''}">
+                    
+                     <p:ajax event="rowSelect" 
+                             listener="#{disciplinaBean.aoClicarNaLinha}" 
+                             update="formDisciplina"/>
+
+                    <p:column headerText="Código">
+                        <h:outputText value="#{d.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{d.nomeDisciplina}"/>
+                    </p:column>
+
+                    <p:column headerText="Carga Horária">
+                        <h:outputText value="#{d.cargaHoraria}"/>
+                    </p:column>
+
+                    <p:column headerText="Professor">
+                        <h:outputText value="#{d.professor.nomePessoa}"/>
+                    </p:column>
+
+                    <p:column headerText="Limite de Alunos">
+                        <h:outputText value="#{d.limiteAlunos}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </p:fieldset>
+
+        </h:form>
+    </h:body>
+</html>

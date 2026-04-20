@@ -37,27 +37,67 @@ public class Pessoa implements Serializable {
     @Column(length = 20)
     private String tipo;
 
-    public Integer getIdPessoa() { return idPessoa; }
-    public void setIdPessoa(Integer idPessoa) { this.idPessoa = idPessoa; }
+    public Integer getIdPessoa() {
+        return idPessoa;
+    }
 
-    public String getNomePessoa() { return nomePessoa; }
-    public void setNomePessoa(String nomePessoa) { this.nomePessoa = nomePessoa; }
+    public void setIdPessoa(Integer idPessoa) {
+        this.idPessoa = idPessoa;
+    }
 
-    public String getEndereco() { return endereco; }
-    public void setEndereco(String endereco) { this.endereco = endereco; }
+    public String getNomePessoa() {
+        return nomePessoa;
+    }
 
-    public String getUf() { return uf; }
-    public void setUf(String uf) { this.uf = uf; }
+    public void setNomePessoa(String nomePessoa) {
+        this.nomePessoa = nomePessoa;
+    }
 
-    public String getTelefone() { return telefone; }
-    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public String getEndereco() {
+        return endereco;
+    }
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getUf() {
+        return uf;
+    }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }
