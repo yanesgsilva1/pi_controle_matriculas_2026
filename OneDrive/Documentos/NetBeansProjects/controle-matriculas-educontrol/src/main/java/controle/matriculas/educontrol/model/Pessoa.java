@@ -1,10 +1,6 @@
-
 package controle.matriculas.educontrol.model;
 
-/**
- *
- * @author leo
- */
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,76 +31,33 @@ public class Pessoa {
     @Column(nullable = false, unique = true, length = 14)
     private String cpf;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(length = 100)
     private String email;
-    
+
     @Column(length = 20)
     private String tipo;
 
-    public Integer getIdPessoa() {
-        return idPessoa;
-    }
+    public Integer getIdPessoa() { return idPessoa; }
+    public void setIdPessoa(Integer idPessoa) { this.idPessoa = idPessoa; }
 
-    public void setIdPessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
-    }
+    public String getNomePessoa() { return nomePessoa; }
+    public void setNomePessoa(String nomePessoa) { this.nomePessoa = nomePessoa; }
 
-    public String getNomePessoa() {
-        return nomePessoa;
-    }
+    public String getEndereco() { return endereco; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
 
-    public void setNomePessoa(String nomePessoa) {
-        this.nomePessoa = nomePessoa;
-    }
+    public String getUf() { return uf; }
+    public void setUf(String uf) { this.uf = uf; }
 
-    public String getEndereco() {
-        return endereco;
-    }
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    public String getCpf() { return cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
 
-    public String getUf() {
-        return uf;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
-    
-    
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 }

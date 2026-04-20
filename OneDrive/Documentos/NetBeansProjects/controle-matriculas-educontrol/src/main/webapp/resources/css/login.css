@@ -3,11 +3,12 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Fundo azul */
 .page-container {
-    background-color: #1E73BE; /* azul */
+    background-color: #1E73BE;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -21,10 +22,12 @@ html, body {
     color: #fff;
     margin-bottom: 20px;
 }
+
 .header h1 {
     margin: 0;
     font-size: 28px;
 }
+
 .header h3 {
     margin: 5px 0 0;
     font-size: 16px;
@@ -33,19 +36,19 @@ html, body {
 /* Labels alinhadas ao lado dos campos */
 .login-box label {
     display: inline-block;
-    width: 80px;        /* largura fixa para alinhar labels */
-    text-align: right;  /* texto encostado no campo */
-    margin-right: 12px; /* espaço entre label e campo */
+    width: 60px;
+    text-align: right;
+    margin-right: 12px;
     font-weight: bold;
     color: #333;
- }
+}
 
 /* Campos de entrada */
 .login-box input {
     display: inline-block;
-    width: 150px;       /* largura do campo */
+    width: 150px;
     padding: 6px;
-    border: 1px solid #1e90ff; /* borda azul */
+    border: 1px solid #1e90ff;
     border-radius: 4px;
 }
 
@@ -57,16 +60,15 @@ html, body {
     width: 300px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    
 }
 
 /* Campos de entrada com borda azul */
 .ui-inputfield {
-    border: 1px solid #1e90ff !important; /* azul */
-    box-shadow: none !important;          /* remove sombra padrão */
+    border: 1px solid #1e90ff !important;
+    box-shadow: none !important;
 }
 
-/* Botões coloridos */
+/* Botões */
 .btn {
     margin: 5px;
     padding: 8px 16px;
@@ -75,19 +77,28 @@ html, body {
     color: #fff;
     cursor: pointer;
 }
-.btn-green { background-color: #28a745; }
-.btn-blue { background-color: #007bff; }
-.btn-red { background-color: #dc3545; }
 
-/* Remove a tarja vermelha das mensagens de erro */
+/* Botão Entrar — maior que os demais */
+.btn-green {
+    background-color: #28a745;
+    padding: 10px 28px;
+    font-size: 14px;
+    min-width: 110px;
+    height: 35px;
+}
+
+.btn-blue { background-color: #007bff; }
+.btn-red  { background-color: #dc3545; }
+
+/* Mensagens de erro */
 .ui-message-error,
 .ui-messages-error {
-    background: none !important;   /* remove fundo */
-    border: none !important;       /* remove borda */
-    color: #dc3545 !important;     /* mantém texto vermelho */
-    padding: 0 !important;         /* remove espaçamento interno */
-    margin-top: 10px !important;               /* afasta do campo */
-    display: block;                /* força ficar abaixo do campo */
+    background: none !important;
+    border: none !important;
+    color: #dc3545 !important;
+    padding: 0 !important;
+    margin-top: 10px !important;
+    display: block;
 }
 
 /* Dica */
@@ -95,15 +106,14 @@ html, body {
     margin-top: 15px;
     font-size: 12px;
     color: #666;
-    
 }
-/* Remove o cursor de digitação de todos os elementos por padrão */
+
+/* Remove cursor de digitação em elementos não editáveis */
 body, label, .ui-message, .ui-message-error {
-    caret-color: transparent; /* oculta o cursor */
+    caret-color: transparent;
 }
 
-/* Mantém o cursor de digitação apenas nos campos de entrada */
+/* Mantém cursor apenas nos campos de entrada */
 input, textarea, .ui-inputfield {
-    caret-color: auto;        /* mostra o cursor normalmente */
+    caret-color: auto;
 }
-

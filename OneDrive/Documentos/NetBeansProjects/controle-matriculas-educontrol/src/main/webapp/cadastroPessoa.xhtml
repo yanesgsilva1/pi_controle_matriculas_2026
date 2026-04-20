@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -16,14 +12,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
     <h:body>
         <h:form id="formPessoa">
-            <f:event type="preRenderView" listener="#{pessoaBean.consultar}"/>
 
-            <!-- Mensagens de validação -->
             <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
 
             <!-- SEÇÃO: Dados da Pessoa -->
             <p:fieldset legend="Dados da Pessoa" style="margin-bottom:8px">
-                <p:panelGrid columns="2" style="width:100%" columnClasses="label,value-right">
+                <p:panelGrid columns="2" columnClasses="label,value-right">
 
                     <p:outputLabel for="nome" value="Nome:"/>
                     <p:inputText id="nome"
@@ -59,9 +53,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:outputLabel for="tipo" value="Tipo:"/>
                     <p:selectOneMenu id="tipo"
                                      value="#{pessoaBean.pessoa.tipo}"
-                                     style="width:200px"
                                      required="true"
-                                     requiredMessage="Tipo é obrigatório.">
+                                     requiredMessage="Tipo é obrigatório."
+                                     style="width:500px">
+                        <f:selectItem itemLabel="Selecione..." itemValue=""
+                                      noSelectionOption="true"/>
                         <f:selectItem itemLabel="ALUNO"     itemValue="ALUNO"/>
                         <f:selectItem itemLabel="PROFESSOR" itemValue="PROFESSOR"/>
                     </p:selectOneMenu>
@@ -71,50 +67,59 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
             <!-- BOTÕES -->
             <div style="text-align:center; margin:10px 0;">
-                <p:commandButton value="Salvar" icon="pi pi-save"
+                <p:commandButton value="Salvar"
                                  styleClass="btn-salvar"
                                  action="#{pessoaBean.salvar}"
-                                 ajax="false"
                                  update="formPessoa"
-                                 style="margin:0 4px; min-width:90px"/>
+                                 style="margin:0 4px;"/>
 
-                <p:commandButton value="Editar" icon="pi pi-pencil"
+                <p:commandButton value="Editar"
                                  styleClass="btn-editar"
                                  action="#{pessoaBean.editar}"
                                  update="formPessoa"
-                                 style="margin:0 4px; min-width:90px"/>
+                                 process="@this"
+                                 immediate="true"
+                                 style="margin:0 4px;"/>
 
-                <p:commandButton value="Excluir" icon="pi pi-trash"
+                <p:commandButton value="Excluir"
                                  styleClass="btn-excluir"
                                  action="#{pessoaBean.excluir}"
                                  update="formPessoa"
+                                 process="@this"
                                  onclick="return confirm('Deseja excluir esta pessoa?')"
-                                 style="margin:0 4px; min-width:90px"/>
+                                 style="margin:0 4px;"/>
 
-                <p:commandButton value="Limpar" icon="pi pi-refresh"
+                <p:commandButton value="Limpar"
                                  styleClass="btn-limpar"
                                  action="#{pessoaBean.limpar}"
                                  update="formPessoa"
-                                 immediate="true"
-                                 style="margin:0 4px; min-width:90px"/>
+                                 process="@this"
+                                 resetValues="true"
+                                 style="margin:0 4px;"/>
             </div>
 
             <!-- SEÇÃO: Lista de Pessoas -->
             <p:fieldset legend="Lista de Pessoas">
                 <h:outputText value="Total: #{pessoaBean.totalRegistros} registros"
                               style="font-weight:bold; margin-bottom:8px; display:block"/>
+
                 <p:dataTable id="tabelaPessoas"
                              styleClass="tabela-pessoas"
                              value="#{pessoaBean.listaPessoas}"
                              var="p"
                              paginator="true"
                              rows="10"
+                             paginatorPosition="bottom"
                              emptyMessage="Nenhuma pessoa encontrada."
                              style="width:100%; font-size:13px"
                              selectionMode="single"
                              selection="#{pessoaBean.pessoaSelecionada}"
-                             rowKey="#{p.idPessoa}">
+                             rowKey="#{p.idPessoa}"
+                             rowStyleClass="#{pessoaBean.idPessoaSelecionada == p.idPessoa ? 'linha-selecionada' : ''}">
 
+                    <p:ajax event="rowSelect"
+                            listener="#{pessoaBean.aoClicarNaLinha}"
+                            update="formPessoa"/>
 
                     <p:column headerText="ID" style="width:50px; text-align:center">
                         <h:outputText value="#{p.idPessoa}"/>
@@ -139,8 +144,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Tipo" style="width:100px; text-align:center">
                         <h:outputText value="#{p.tipo}"/>
                     </p:column>
+
                 </p:dataTable>
             </p:fieldset>
         </h:form>
     </h:body>
 </html>
+

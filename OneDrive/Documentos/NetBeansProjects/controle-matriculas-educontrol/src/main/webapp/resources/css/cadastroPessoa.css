@@ -1,55 +1,37 @@
-.titulo {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
+/* =============================================
+   Cadastro de Pessoas - cadastroPessoa.css
+   ============================================= */
+
+* { box-sizing: border-box; }
+
+/* Font-family definida uma vez no body — todos os elementos herdam */
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
 }
 
-.painel-dados, .painel-lista {
-    margin: 0 auto;
-    width: 90%;
-    border-radius: 6px;
+/* -----------------------------------------------
+   FIELDSET
+----------------------------------------------- */
+.ui-fieldset {
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    margin: 8px !important;
+    padding: 10px !important;
+    background: #ffffff !important;
 }
 
-.grid-dados .label {
-    font-weight: bold;
-    color: #333;
+.ui-fieldset .ui-fieldset-legend {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    color: #2980b9 !important;
+    padding: 2px 6px !important;
+    background: #ffffff !important;
 }
 
-.botoes {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.btn-salvar  { 
-    background-color: #27ae60 !important; 
-    border-color: #27ae60 !important;
-    color: white;
-}
-.btn-editar  { 
-    background-color: #2980b9 !important; 
-    border-color: #2980b9 !important; 
-    color: white;
-}
-.btn-excluir { 
-    background-color: #e74c3c !important; 
-    border-color: #e74c3c !important; 
-    color: white;
-}
-.btn-limpar  { 
-    background-color: #bdc3c7 !important; 
-    border-color: #bdc3c7 !important; 
-    color: #333 !important; 
-    
-}
-.tabela-pessoas .ui-datatable-thead th {
-    background-color: #2c5282 !important;
-     color: white !important;
-}
-.tabela-pessoas .ui-datatable-even { 
-    background-color: #f7f9fc; 
-}
-/* Remove todas as bordas e linhas do panelGrid (dados da pessoa) */
+/* -----------------------------------------------
+   PANELGRID
+----------------------------------------------- */
 .ui-panelgrid,
 .ui-panelgrid td,
 .ui-panelgrid tr,
@@ -57,48 +39,148 @@
 .ui-panelgrid .ui-panelgrid-cell {
     border: none !important;
     box-shadow: none !important;
+    background: transparent !important;
 }
 
-/* Remove linhas horizontais e verticais */
-.ui-panelgrid td,
-.ui-panelgrid tr {
-    border: none !important;
-}
-
-/* Ajusta espaçamento para manter visual limpo */
 .ui-panelgrid td {
-    padding: 6px 0 !important;
+    padding: 5px 4px !important;
+    vertical-align: middle !important;
 }
 
-/* Remove bordas e linhas da tabela de lista de pessoas */
-.tabela-pessoas .ui-datatable-tablewrapper table,
-.tabela-pessoas .ui-datatable-tablewrapper td,
-.tabela-pessoas .ui-datatable-tablewrapper th,
-.tabela-pessoas .ui-widget-content,
-.tabela-pessoas .ui-datatable-data tr,
-.tabela-pessoas .ui-datatable-data td {
-    border: none !important;
-    box-shadow: none !important;
+.ui-panelgrid td:first-child {
+    font-weight: bold !important;
+    color: #333 !important;
+    white-space: nowrap !important;
+    width: 120px !important;
 }
-/* Padroniza tamanho dos campos de texto e combo */
+
+/* -----------------------------------------------
+   CAMPOS
+----------------------------------------------- */
 .ui-inputfield,
 .ui-inputmask,
+.ui-inputtext {
+    width: 500px !important;
+    height: 26px !important;
+    padding: 2px 6px !important;
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+}
+
 .ui-selectonemenu {
-    width: 320px !important;
+    width: 500px !important;
+    height: 28px !important;
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    display: inline-flex !important;
+    align-items: center !important;
 }
 
+.ui-selectonemenu .ui-selectonemenu-label {
+    font-size: 13px !important;
+    padding: 2px 6px !important;
+    flex: 1 !important;
+}
 
+.ui-selectonemenu .ui-selectonemenu-trigger {
+    width: 28px !important;
+    height: 100% !important;
+    background: #e0e7ef !important;
+    border-left: 1px solid #a0b4c8 !important;
+    border-radius: 0 4px 4px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger span {
+    display: block !important;
+    visibility: visible !important;
+    color: #333 !important;
+}
+
+/* -----------------------------------------------
+   BOTÕES
+----------------------------------------------- */
+.btn-salvar,
+.btn-editar,
+.btn-excluir,
+.btn-limpar {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    height: 30px !important;
+    min-width: 90px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 16px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+    filter: none !important;
+}
+
+.btn-salvar { background-color: #27ae60 !important; border: none !important; color: white !important; }
+.btn-salvar:hover { background-color: #1e8449 !important; }
+
+.btn-editar { background-color: #2980b9 !important; border: none !important; color: white !important; }
+.btn-editar:hover { background-color: #1f6391 !important; }
+
+.btn-excluir { background-color: #e74c3c !important; border: none !important; color: white !important; }
+.btn-excluir:hover { background-color: #c0392b !important; }
+
+.btn-limpar { background-color: #ffffff !important; border: 1px solid #cccccc !important; color: #333 !important; }
+.btn-limpar:hover { background-color: #f0f0f0 !important; }
+
+.btn-salvar .ui-button-text,
+.btn-editar .ui-button-text,
+.btn-excluir .ui-button-text,
+.btn-limpar .ui-button-text {
+    padding: 0 !important;
+}
+
+/* -----------------------------------------------
+   TABELA
+----------------------------------------------- */
 .tabela-pessoas {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-}
-.value-right {
-    text-align: right;
-}
-.value-right input, 
-.value-right .ui-inputfield {
-    float: right;
+    width: 100% !important;
+    font-size: 13px !important;
 }
 
+.tabela-pessoas thead th {
+    background-color: #2c5282 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    padding: 6px 8px !important;
+    border: 1px solid #1a3a5c !important;
+    text-align: center !important;
+}
 
+.tabela-pessoas tbody td {
+    padding: 4px 8px !important;
+    border: 1px solid #d0d8e4 !important;
+    vertical-align: middle !important;
+}
+
+.tabela-pessoas .ui-datatable-odd  { background-color: #ffffff !important; }
+.tabela-pessoas .ui-datatable-even { background-color: #e8f0f7 !important; }
+
+.tabela-pessoas tbody tr { cursor: pointer !important; }
+
+.tabela-pessoas tbody tr.linha-selecionada td {
+    background-color: #b8d4f0 !important;
+    font-weight: bold !important;
+}
+
+.tabela-pessoas tbody tr:hover td { background-color: #d0e8ff !important; }
+
+.tabela-pessoas .ui-paginator {
+    background: transparent !important;
+    border: none !important;
+    padding: 4px 0 !important;
+    font-size: 12px !important;
+}
