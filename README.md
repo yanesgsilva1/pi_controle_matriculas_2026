@@ -56,7 +56,7 @@ Antes de executar o projeto, certifique-se de ter instalado:
 
 - [Java JDK 8+](https://www.oracle.com/java/technologies/downloads/)
 - [Apache NetBeans](https://netbeans.apache.org/)
-- [GlassFish Server](https://javaee.github.io/glassfish/)
+- [GlassFish Server 5](https://javaee.github.io/glassfish/)
 - [MySQL Server](https://dev.mysql.com/downloads/)
 - [Maven](https://maven.apache.org/)
 
