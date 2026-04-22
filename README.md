@@ -36,6 +36,7 @@ controle-matriculas-educontrol/
 │       │   └── controle/matriculas/educontrol/
 │       │       ├── bean/          # Managed Beans (JSF)
 │       │       ├── model/         # Entidades JPA
+|       |       ├── dao/           # Persistência/Operações do CRUD
 │       │       └── util/          # Classes utilitárias (HibernateUtil)
 │       ├── resources/
 │       │   └── hibernate.cfg.xml  # Configuração do Hibernate
