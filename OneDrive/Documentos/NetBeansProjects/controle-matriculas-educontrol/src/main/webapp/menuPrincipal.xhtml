@@ -6,42 +6,42 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sistema de Controle de Matrícula</title>
-    <h:outputStylesheet name="css/menu.css"/>
-</h:head>
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Sistema de Controle de Matrícula</title>
+        <h:outputStylesheet name="css/menu.css"/>
+    </h:head>
 
-<h:body>
+    <h:body>
 
-    <div class="menubar-wrapper">
-        <h:form id="frmMenu">
-            <p:menubar styleClass="custom-menubar">
+        <div class="menubar-wrapper">
+            <h:form id="frmMenu">
+                <p:menubar styleClass="custom-menubar">
 
-                <p:submenu label="Cadastros">
-                    <p:menuitem value="Pessoas"      url="cadastroPessoa.xhtml" />
-                    <p:menuitem value="Disciplinas"  url="cadastroDisciplina.xhtml" />
-                    <p:menuitem value="Matrículas"   url="#" />
-                </p:submenu>
+                    <p:submenu label="Cadastros">
+                        <p:menuitem value="Pessoas"      url="cadastroPessoa.xhtml" />
+                        <p:menuitem value="Disciplinas"  url="cadastroDisciplina.xhtml" />
+                        <p:menuitem value="Matrículas"   url="#" />
+                    </p:submenu>
 
-                <p:submenu label="Relatórios">
-                    <p:menuitem value="Disciplinas por Professor"  url="#" />
-                    <p:menuitem value="Disciplinas por Aluno"      url="#" />
-                    <p:menuitem value="Faturamento por Período"    url="#" />
-                </p:submenu>
+                    <p:submenu label="Relatórios">
+                        <p:menuitem value="Disciplinas por Professor"  url="relatorioDisciplinas.xhtml" />
+                        <p:menuitem value="Disciplinas por Aluno"      url="#" />
+                        <p:menuitem value="Faturamento por Período"    url="#" />
+                    </p:submenu>
 
-                <p:submenu label="Sistema">
-                    <p:menuitem value="Usuários"  url="#" />
-                    <p:separator />
-                    <p:menuitem value="Sair"      url="#" />
-                </p:submenu>
+                    <p:submenu label="Sistema">
+                        <p:menuitem value="Usuários"  url="#" />
+                        <p:separator />
+                        <p:menuitem value="Sair"      url="#" />
+                    </p:submenu>
 
-            </p:menubar>
-        </h:form>
-    </div>
+                </p:menubar>
+            </h:form>
+        </div>
 
-    <div class="main-content"></div>
+        <div class="main-content"></div>
 
-</h:body>
+    </h:body>
 </html>

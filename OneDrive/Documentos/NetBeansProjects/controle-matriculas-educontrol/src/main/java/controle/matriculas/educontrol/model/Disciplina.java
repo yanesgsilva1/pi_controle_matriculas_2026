@@ -21,11 +21,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "disciplina")
 public class Disciplina implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
-    
+
     @Column(nullable = false, length = 100)
     private String nomeDisciplina;
 
@@ -78,6 +78,29 @@ public class Disciplina implements Serializable {
     public void setLimiteAlunos(Integer limiteAlunos) {
         this.limiteAlunos = limiteAlunos;
     }
+
+    //******* ATENÇÃO ******
+    //CAMPOS AUXILIARES PARA O DESENV DA TELA DE RELATÓRIO DISCIPLINA POR PROF.
+    //Aguardando Wendel finalizar a tela de Matrículas.
+    private int totalMatriculas;
+    private int vagasRestantes;
+
+    public int getTotalMatriculas() {
+        return totalMatriculas;
+    }
+
+    public void setTotalMatriculas(int totalMatriculas) {
+        this.totalMatriculas = totalMatriculas;
+    }
+
+    public int getVagasRestantes() {
+        return vagasRestantes;
+    }
+
+    public void setVagasRestantes(int vagasRestantes) {
+        this.vagasRestantes = vagasRestantes;
+    }
     
     
+
 }

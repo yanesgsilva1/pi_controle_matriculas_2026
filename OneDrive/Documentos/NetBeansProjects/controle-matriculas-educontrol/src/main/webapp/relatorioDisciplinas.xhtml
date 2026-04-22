@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Relatório de Disciplinas por Professor</title>
+        <h:outputStylesheet library="css" name="relatorios.css"/>
+    </h:head>
+
+    <h:body>
+        <h:form id="formRelatorio">
+
+            <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+
+            <!-- Campo de seleção do professor -->
+            <p:fieldset legend="Selecionar Professor" style="margin-bottom:8px">
+                <p:panelGrid columns="2" columnClasses="label,value-right">
+
+                    <p:outputLabel for="professor" value="Professor:"/>
+                    <p:selectOneMenu id="professor"
+                                     value="#{relatDisciplinaBean.idProfessorSelecionado}"
+                                     style="width:400px"
+                                     requiredMessage="Selecione um professor.">
+                        <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
+                        <f:selectItems value="#{relatDisciplinaBean.listaProfessores}"
+                                       var="p"
+                                       itemLabel="#{p.nomePessoa} (ID: #{p.idPessoa})"
+                                       itemValue="#{p.idPessoa}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+
+                <div style="text-align:center; margin:10px 0;">
+                    <p:commandButton value="Consultar"
+                                     styleClass="btn-salvar"
+                                     action="#{relatDisciplinaBean.consultar}"
+                                     update="formRelatorio"/>
+                    <p:commandButton value="Mostrar Todos"
+                                     styleClass="btn-editar"
+                                     action="#{relatDisciplinaBean.consultarTodos}"
+                                     update="formRelatorio"
+                                     process="@this"/>
+                </div>
+            </p:fieldset>
+
+            <!-- SEÇÃO: Resultado da Consulta -->
+            <p:fieldset legend="Resultado da Consulta">
+                <h:outputText value="Disciplinas por Professor - #{relatDisciplinaBean.totalDisciplinas} 
+                              disciplina(s), #{relatDisciplinaBean.totalMatriculas} 
+                              matrícula(s), #{relatDisciplinaBean.totalVagasRestantes} vaga(s) restante(s)"
+                              style="font-weight:bold; margin-bottom:8px; display:block"/>
+
+                <p:dataTable id="tabelaRelatorio"
+                             styleClass="tabela-relatorio"
+                             value="#{relatDisciplinaBean.listaRelatorio}" 
+                             var="d"
+                             emptyMessage="Nenhuma disciplina encontrada."
+                             paginator="true" 
+                             rows="10"
+                             paginatorPosition="bottom"
+                             style="width:100%; font-size:13px">
+
+                    <p:column headerText="Código" style="width:60px; text-align:center">
+                        <h:outputText value="#{d.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Disciplina">
+                        <h:outputText value="#{d.nomeDisciplina}"/>
+                    </p:column>
+
+                    <p:column headerText="Carga Horária" style="width:120px; text-align:center">
+                        <h:outputText value="#{d.cargaHoraria} horas"/>
+                    </p:column>
+
+                    <p:column headerText="Professor">
+                        <h:outputText value="#{d.professor.nomePessoa}"/>
+                    </p:column>
+
+                    <p:column headerText="Limite Alunos" style="width:120px; text-align:center">
+                        <h:outputText value="#{d.limiteAlunos}"/>
+                    </p:column>
+
+                    <p:column headerText="Total Matrículas" style="width:120px; text-align:center">
+                        <h:outputText value="#{d.totalMatriculas}"/>
+                    </p:column>
+
+                    <p:column headerText="Vagas Restantes" style="width:120px; text-align:center">
+                        <h:outputText value="#{d.vagasRestantes}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </p:fieldset>
+
+        </h:form>
+    </h:body>
+</html>

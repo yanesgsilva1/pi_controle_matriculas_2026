@@ -1,0 +1,193 @@
+/* =============================================
+   Cadastro de Disciplina - cadastroDisciplina.css
+   ============================================= */
+
+* { box-sizing: border-box; }
+
+/* Font-family definida uma vez no body — todos os elementos herdam */
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+/* -----------------------------------------------
+   FIELDSET
+----------------------------------------------- */
+.ui-fieldset {
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    margin: 8px !important;
+    padding: 10px !important;
+    background: #ffffff !important;
+}
+
+.ui-fieldset .ui-fieldset-legend {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    color: #2980b9 !important;
+    padding: 2px 6px !important;
+    background: #ffffff !important;
+}
+
+/* -----------------------------------------------
+   PANELGRID
+----------------------------------------------- */
+.ui-panelgrid,
+.ui-panelgrid td,
+.ui-panelgrid tr,
+.ui-panelgrid .ui-widget-content,
+.ui-panelgrid .ui-panelgrid-cell {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.ui-panelgrid td {
+    padding: 5px 4px !important;
+    vertical-align: middle !important;
+}
+
+.ui-panelgrid td:first-child {
+    font-weight: bold !important;
+    color: #333 !important;
+    white-space: nowrap !important;
+    width: 120px !important;
+}
+
+/* -----------------------------------------------
+   CAMPOS
+----------------------------------------------- */
+.ui-inputfield,
+.ui-inputmask,
+.ui-inputtext {
+    width: 500px !important;
+    height: 26px !important;
+    padding: 2px 6px !important;
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+}
+
+.ui-selectonemenu {
+    width: 500px !important;
+    height: 28px !important;
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-label {
+    font-size: 13px !important;
+    padding: 2px 6px !important;
+    flex: 1 !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger {
+    width: 28px !important;
+    height: 100% !important;
+    background: #e0e7ef !important;
+    border-left: 1px solid #a0b4c8 !important;
+    border-radius: 0 4px 4px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger span {
+    display: block !important;
+    visibility: visible !important;
+    color: #333 !important;
+}
+
+.ui-selectonemenu-panel {
+    background-color: #ffffff !important; /* fundo branco */
+    border: 1px solid #a0b4c8 !important; /* mesma borda do campo */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important; /* sombra leve */
+    z-index: 9999 !important; /* garante que fique acima dos outros elementos */
+}
+
+/* -----------------------------------------------
+   BOTÕES
+----------------------------------------------- */
+.btn-salvar,
+.btn-editar,
+.btn-excluir,
+.btn-limpar {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    height: 30px !important;
+    min-width: 90px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 16px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+    filter: none !important;
+}
+
+.btn-salvar { background-color: #27ae60 !important; border: none !important; color: white !important; }
+.btn-salvar:hover { background-color: #1e8449 !important; }
+
+.btn-editar { background-color: #2980b9 !important; border: none !important; color: white !important; }
+.btn-editar:hover { background-color: #1f6391 !important; }
+
+.btn-excluir { background-color: #e74c3c !important; border: none !important; color: white !important; }
+.btn-excluir:hover { background-color: #c0392b !important; }
+
+.btn-limpar { background-color: #ffffff !important; border: 1px solid #cccccc !important; color: #333 !important; }
+.btn-limpar:hover { background-color: #f0f0f0 !important; }
+
+.btn-salvar .ui-button-text,
+.btn-editar .ui-button-text,
+.btn-excluir .ui-button-text,
+.btn-limpar .ui-button-text {
+    padding: 0 !important;
+}
+
+/* -----------------------------------------------
+   TABELA
+----------------------------------------------- */
+.tabela-relatorio {
+    width: 100% !important;
+    font-size: 13px !important;
+}
+
+.tabela-relatorio thead th {
+    background-color: #2c5282 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+    padding: 6px 8px !important;
+    border: 1px solid #1a3a5c !important;
+    text-align: center !important;
+}
+
+.tabela-relatorio tbody td {
+    padding: 4px 8px !important;
+    border: 1px solid #d0d8e4 !important;
+    vertical-align: middle !important;
+}
+
+.tabela-relatorio .ui-datatable-odd  { background-color: #ffffff !important; }
+.tabela-relatorio .ui-datatable-even { background-color: #e8f0f7 !important; }
+
+.tabela-relatorio tbody tr { cursor: pointer !important; }
+
+.tabela-relatorio tbody tr.linha-selecionada td {
+    background-color: #b8d4f0 !important;
+    font-weight: bold !important;
+}
+
+.tabela-relatorio tbody tr:hover td { background-color: #d0e8ff !important; }
+
+.tabela-relatorio .ui-paginator {
+    background: transparent !important;
+    border: none !important;
+    padding: 4px 0 !important;
+    font-size: 12px !important;
+}
