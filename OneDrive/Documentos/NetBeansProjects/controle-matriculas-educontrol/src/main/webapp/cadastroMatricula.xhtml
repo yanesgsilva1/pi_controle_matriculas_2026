@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro de Matrículas</title>
+        <h:outputStylesheet library="css" name="cadastroMatricula.css"/>
+    </h:head>
+
+    <h:body>
+
+        <h:form id="formMatricula">
+
+            <p:messages autoUpdate="true" closable="true"/>
+
+            <!-- TÍTULO COM TOTAL DE REGISTROS -->
+            <div class="titulo-janela">
+                Cadastro de Matrículas - Total: #{matriculaBean.lista.size()} registros
+            </div>
+
+            <!-- DADOS DA MATRÍCULA -->
+            <p:fieldset legend="Dados da Matrícula" styleClass="fieldset-dados">
+
+                <p:panelGrid columns="2" styleClass="painel-dados" columnClasses="col-label,col-valor">
+
+                    <p:outputLabel value="Disciplina:*"/>
+                    <p:selectOneMenu value="#{matriculaBean.matricula.disciplina}" 
+                                     converter="disciplinaConverter"
+                                     required="true"
+                                     requiredMessage="Selecione uma disciplina">
+
+                        <f:selectItems value="#{matriculaBean.disciplinas}" 
+                                       var="d"
+                                       itemLabel="#{d.nomeDisciplina}" 
+                                       itemValue="#{d}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Aluno:*"/>
+                    <p:selectOneMenu value="#{matriculaBean.matricula.aluno}" 
+                                     converter="pessoaConverter"
+                                     required="true"
+                                     requiredMessage="Selecione um aluno">
+
+                        <f:selectItems value="#{matriculaBean.alunos}" 
+                                       var="a"
+                                       itemLabel="#{a.nomePessoa}" 
+                                       itemValue="#{a}" />
+                    </p:selectOneMenu>
+
+
+                    <p:outputLabel value="Data (YYYY-MM-DD):*"/>
+                    <p:calendar value="#{matriculaBean.matricula.dataMatricula}"
+                                pattern="yyyy-MM-dd"
+                                styleClass="campo-input"/>
+
+                    <p:outputLabel value="Valor Pago:*"/>
+                    <p:inputText value="#{matriculaBean.matricula.valorPago}" 
+                                 required="true"
+                                 requiredMessage="Informe o valor">
+                        <f:convertNumber locale="pt_BR"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Período:*"/>
+                    <p:inputText value="#{matriculaBean.matricula.periodo}"
+                                 required="true"
+                                 requiredMessage="Informe o período"/>
+
+                </p:panelGrid>
+
+            </p:fieldset>
+
+            <!-- BOTÕES -->
+            <div class="area-botoes">
+
+                <p:commandButton value="Salvar"
+                                 action="#{matriculaBean.salvar}"
+                                 process="@form"
+                                 update="@form"
+                                 styleClass="btn btn-salvar"/>
+
+                <p:commandButton value="Editar"
+                                 action="#{matriculaBean.salvar}"
+                                 update="formMatricula"
+                                 styleClass="btn btn-editar"/>
+
+                <p:commandButton value="Excluir"
+                                 action="#{matriculaBean.excluir(matriculaBean.matricula)}"
+                                 update="formMatricula"
+                                 styleClass="btn btn-excluir"
+                                 onclick="return confirm('Deseja excluir esta matrícula?')"/>
+
+                <p:commandButton value="Limpar" 
+                                 styleClass="btn-limpar"
+                                 action="#{MatriculaBean.limpar}" 
+                                 update="formMatricula"
+                                 process="@this"
+                                 resetValues="true"
+                                 style="margin:0 4px;"/>
+
+            </div>
+
+            <!-- LISTA DE MATRÍCULAS -->
+            <p:fieldset legend="Lista de Matrículas" styleClass="fieldset-lista">
+
+                <p:dataTable value="#{matriculaBean.lista}"
+                             var="m"
+                             paginator="true"
+                             rows="10"
+                             styleClass="tabela-matricula">
+
+                    <p:column headerText="ID" style="width:50px; text-align:center">
+                        #{m.idmat}
+                    </p:column>
+
+                    <p:column headerText="Disciplina">
+                        #{m.disciplina.nomeDisciplina}
+                    </p:column>
+
+                    <p:column headerText="Aluno">
+                        #{m.aluno.nomePessoa}
+                    </p:column>
+
+                    <p:column headerText="Data" style="width:110px">
+                        #{m.dataMatricula}
+                    </p:column>
+
+                    <p:column headerText="Valor" style="width:100px">
+                        R$ #{m.valorPago}
+                    </p:column>
+
+                    <p:column headerText="Período" style="width:100px">
+                        #{m.periodo}
+                    </p:column>
+
+                </p:dataTable>
+
+            </p:fieldset>
+
+        </h:form>
+
+    </h:body>
+</html>
