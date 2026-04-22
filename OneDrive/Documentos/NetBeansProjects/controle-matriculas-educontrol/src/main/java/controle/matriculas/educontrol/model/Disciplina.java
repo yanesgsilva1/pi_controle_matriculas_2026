@@ -79,5 +79,17 @@ public class Disciplina implements Serializable {
         this.limiteAlunos = limiteAlunos;
     }
     
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Disciplina)) return false;
+    Disciplina d = (Disciplina) o;
+    return codigo != null && codigo.equals(d.codigo);
+}
+
+@Override
+public int hashCode() {
+    return 31;
+}    
     
 }
