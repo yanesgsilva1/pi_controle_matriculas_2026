@@ -7,7 +7,7 @@
 
 ## 📋 Sobre o Projeto
 
-O **EduControl** é um sistema web para gerenciamento e controle de matrículas acadêmicas. Desenvolvido como Projeto Integrador do curso de ADS, a aplicação permite o cadastro e a gestão de pessoas (alunos/responsáveis) por meio de uma interface web integrada a banco de dados relacional.
+O **EduControl** é um sistema web para gerenciamento e controle de matrículas acadêmicas. Desenvolvido como Projeto Integrador do curso de ADS, a aplicação permite o cadastro e a gestão de pessoas (alunos/professores) por meio de uma interface web integrada a banco de dados relacional.
 
 ---
 
