@@ -100,18 +100,4 @@ public class Pessoa implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-@Override
-public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Pessoa)) return false;
-    Pessoa p = (Pessoa) o;
-    return idPessoa != null && idPessoa.equals(p.idPessoa);
-}
-
-@Override
-public int hashCode() {
-    return 31;
-}
-
 }

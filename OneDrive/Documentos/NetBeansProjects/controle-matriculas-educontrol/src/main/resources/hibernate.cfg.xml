@@ -9,7 +9,7 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/controle_matriculas?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">87302619Wn.</property>
+        <property name="hibernate.connection.password">Informe a sua senha do BD</property>
 
         <!-- Dialeto do MySQL -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
@@ -27,7 +27,7 @@
         <!-- Registrar entidades -->
         <mapping class="controle.matriculas.educontrol.model.Pessoa"/>
         <mapping class="controle.matriculas.educontrol.model.Disciplina"/>
-        <mapping class="controle.matriculas.educontrol.model.Matricula"/>
-        <mapping class="controle.matriculas.educontrol.model.Usuario"/>
+        <!--<mapping class="controle.matriculas.educontrol.model.Matricula"/>
+        <mapping class="controle.matriculas.educontrol.model.Usuario"/>-->
     </session-factory>
 </hibernate-configuration>
