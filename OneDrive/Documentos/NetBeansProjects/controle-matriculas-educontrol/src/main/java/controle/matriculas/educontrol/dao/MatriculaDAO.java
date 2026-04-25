@@ -4,24 +4,20 @@
  */
 package controle.matriculas.educontrol.dao;
 
-import controle.matriculas.educontrol.model.Pessoa;
+import controle.matriculas.educontrol.model.Matricula;
 import controle.matriculas.educontrol.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-/**
- *
- * @author leo
- */
-public class PessoaDAO {
-    
-    public void salvar(Pessoa pessoa) {
+public class MatriculaDAO {
+
+    public void salvar(Matricula matricula) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         try {
-            s.save(pessoa);
+            s.save(matricula);
             t.commit();
         } catch (Exception e) {
             t.rollback();
@@ -30,12 +26,12 @@ public class PessoaDAO {
             s.close();
         }
     }
-    
-    public void editar(Pessoa pessoa) {
+
+    public void editar(Matricula matricula) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         try {
-            s.merge(pessoa);
+            s.merge(matricula);
             t.commit();
         } catch (Exception e) {
             t.rollback();
@@ -44,14 +40,14 @@ public class PessoaDAO {
             s.close();
         }
     }
-    
-    public void excluir(Integer idPessoa) {
+
+    public void excluir(Integer idMatricula) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
         try {
-            Pessoa p = s.get(Pessoa.class, idPessoa);
-            if (p != null) {
-                s.delete(p);
+            Matricula m = s.get(Matricula.class, idMatricula);
+            if (m != null) {
+                s.delete(m);
             }
             t.commit();
         } catch (Exception e) {
@@ -61,31 +57,26 @@ public class PessoaDAO {
             s.close();
         }
     }
-    
-    public List<Pessoa> listarProfessores() {
+
+    public List<Matricula> listarTodas() {
         Session s = HibernateUtil.getSessionFactory().openSession();
         try {
-            Query<Pessoa> q = s.createQuery("from Pessoa where tipo = 'PROFESSOR' order by nomePessoa", Pessoa.class);
-            return q.list();
-        } finally {
-            s.close();
-        }
-    }
-    
-        public List<Pessoa> listarAlunos() {
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        try {
-            Query<Pessoa> q = s.createQuery("from Pessoa where tipo = 'ALUNO' order by nomePessoa", Pessoa.class);
+            Query<Matricula> q = s.createQuery("from Matricula order by dataMatricula", Matricula.class);
             return q.list();
         } finally {
             s.close();
         }
     }
 
-    public Pessoa buscarPorId(Integer id) {
+    //Conta quantos alunos por disciplina
+    public int contarPorDisciplina(Integer idDisciplina) {
         Session s = HibernateUtil.getSessionFactory().openSession();
         try {
-            return s.get(Pessoa.class, id);
+            Long count = (Long) s.createQuery(
+                    "select count(m) from Matricula m where m.disciplina.codigo = :id")
+                    .setParameter("id", idDisciplina)
+                    .uniqueResult();
+            return count.intValue();
         } finally {
             s.close();
         }

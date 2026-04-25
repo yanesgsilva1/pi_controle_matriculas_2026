@@ -8,17 +8,13 @@ import controle.matriculas.educontrol.dao.DisciplinaDAO;
 import controle.matriculas.educontrol.dao.PessoaDAO;
 import controle.matriculas.educontrol.model.Disciplina;
 import controle.matriculas.educontrol.model.Pessoa;
-import controle.matriculas.educontrol.util.HibernateUtil;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.primefaces.event.SelectEvent;
 
 /**
@@ -71,7 +67,7 @@ public class DisciplinaBean implements Serializable {
     }
 
     public void consultar() {
-        listaDisciplinas = disciplinaDAO.listarTodas();
+        listaDisciplinas = disciplinaDAO.listarTodasDisciplinas();
     }
 
     public void editar() {

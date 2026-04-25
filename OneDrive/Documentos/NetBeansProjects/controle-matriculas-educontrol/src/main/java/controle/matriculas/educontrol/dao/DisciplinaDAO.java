@@ -80,13 +80,9 @@ public class DisciplinaDAO {
         }
     }
 
-    public List<Disciplina> listarTodas() {
-        Session s = HibernateUtil.getSessionFactory().openSession();
-        try {
-            Query<Disciplina> q = s.createQuery("from Disciplina order by nomeDisciplina", Disciplina.class);
-            return q.list();
-        } finally {
-            s.close();
+    public Disciplina buscarPorId(Integer idDisciplina) {
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            return s.get(Disciplina.class, idDisciplina);
         }
     }
 

@@ -33,7 +33,7 @@ public class RelatDisciplinaBean implements Serializable {
     private int totalDisciplinas;
     private int totalMatriculas;
     private int totalVagasRestantes;
-    
+
     private DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
     private PessoaDAO pessoaDAO = new PessoaDAO();
 
@@ -49,56 +49,26 @@ public class RelatDisciplinaBean implements Serializable {
             return;
         }
         listaRelatorio = disciplinaDAO.listarDisciplinasPorProfessor(idProfessorSelecionado);
-        calcularTotaisSemMatricula();
+        calcularTotais();
     }
 
     public void consultarTodos() {
         listaRelatorio = disciplinaDAO.listarTodasDisciplinas();
-        calcularTotaisSemMatricula();
+        calcularTotais();
     }
 
     /* *****Atenção***** Cálculo provisório!!! Quando Wendel finalizar Matrículas, 
     basta substituir a lógica para buscar os números reais*/
-    private void calcularTotaisSemMatricula() {
+    private void calcularTotais() {
         totalDisciplinas = listaRelatorio.size();
         totalMatriculas = 0;
         totalVagasRestantes = 0;
 
         for (Disciplina d : listaRelatorio) {
-            d.setTotalMatriculas(0); // provisório
-            d.setVagasRestantes(d.getLimiteAlunos()); // provisório
             totalMatriculas += d.getTotalMatriculas();
             totalVagasRestantes += d.getVagasRestantes();
         }
     }
-
-    //Método já preparado para quando Wendel encaminhar o módulo de Matriculas
-    
-    /*private void calcularTotais() {
-        totalDisciplinas = listaRelatorio.size();
-        totalMatriculas = 0;
-        totalVagasRestantes = 0;
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        for (Disciplina d : listaRelatorio) {
-            // Consulta real de matrículas por disciplina
-            Query<Long> query = session.createQuery(
-                    "SELECT COUNT(m) FROM Matricula m WHERE m.disciplina.codigo = :codigo", Long.class);
-            query.setParameter("codigo", d.getCodigo());
-            Long qtdMatriculas = query.uniqueResult();
-
-            // Atualiza os campos auxiliares
-            d.setTotalMatriculas(qtdMatriculas.intValue());
-            d.setVagasRestantes(d.getLimiteAlunos() - qtdMatriculas.intValue());
-
-            // Atualiza os totais gerais
-            totalMatriculas += d.getTotalMatriculas();
-            totalVagasRestantes += d.getVagasRestantes();
-        }
-
-        session.close();
-    }*/
 
     private void addMsg(FacesMessage.Severity severity, String msg) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, msg, null));

@@ -38,6 +38,12 @@ public class Disciplina implements Serializable {
 
     @Column(nullable = false)
     private Integer limiteAlunos;
+    
+    @Column (nullable = false)
+    private int totalMatriculas;
+    
+    @Column (nullable = false)
+    private int vagasRestantes;
 
     public Integer getCodigo() {
         return codigo;
@@ -78,12 +84,6 @@ public class Disciplina implements Serializable {
     public void setLimiteAlunos(Integer limiteAlunos) {
         this.limiteAlunos = limiteAlunos;
     }
-
-    //******* ATENÇÃO ******
-    //CAMPOS AUXILIARES PARA O DESENV DA TELA DE RELATÓRIO DISCIPLINA POR PROF.
-    //Aguardando Wendel finalizar a tela de Matrículas.
-    private int totalMatriculas;
-    private int vagasRestantes;
 
     public int getTotalMatriculas() {
         return totalMatriculas;

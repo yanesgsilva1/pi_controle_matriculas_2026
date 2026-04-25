@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro de Matrículas</title>
+        <h:outputStylesheet library="css" name="cadastroMatricula.css"/>
+        <h:outputScript library="js" name="primefaces-locales-pt.js" />
+    </h:head>
+
+    <h:body>
+        <h:form id="formMatricula">
+
+            <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+
+            <!-- Dados da Matrícula -->
+            <p:fieldset legend="Dados da Matrícula" style="margin-bottom:8px">
+                <p:panelGrid columns="2" styleClass="painel-dados" style="width:100%" columnClasses="label,value-right">
+
+                    <p:outputLabel for="disciplina" value="Disciplina:"/>
+                    <p:selectOneMenu id="disciplina"
+                                     value="#{matriculaBean.idDisciplinaSelecionada}"
+                                     required="true"
+                                     requiredMessage="Seleção da disciplina é obrigatória."
+                                     style="width:500px">
+                        <f:selectItem itemLabel="Selecione..." itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{matriculaBean.listaDisciplinas}" var="d"
+                                       itemLabel="#{d.nomeDisciplina}" itemValue="#{d.codigo}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="aluno" value="Aluno:"/>
+                    <p:selectOneMenu id="aluno"
+                                     value="#{matriculaBean.idAlunoSelecionado}"
+                                     required="true"
+                                     requiredMessage="Seleção do aluno é obrigatória."
+                                     style="width:500px">
+                        <f:selectItem itemLabel="Selecione..." itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{matriculaBean.listaAlunos}" var="a"
+                                       itemLabel="#{a.nomePessoa}" itemValue="#{a.idPessoa}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="data" value="Data:"/>
+                    <p:calendar id="data"
+                                value="#{matriculaBean.matricula.dataMatricula}"
+                                pattern="dd-MM-yyyy"
+                                locale="pt"
+                                navigator="true"
+                                yearRange="2000:2030"
+                                required="true"
+                                requiredMessage="Data da matrícula é obrigatória."/>
+
+                    <p:outputLabel for="valor" value="Valor Pago:"/>
+                    <p:inputText id="valor"
+                                 value="#{matriculaBean.matricula.valorPago}"
+                                 required="true"
+                                 requiredMessage="Valor pago é obrigatório."/>
+
+                    <p:outputLabel for="periodo" value="Período:"/>
+                    <p:inputText id="periodo"
+                                 value="#{matriculaBean.matricula.periodo}"
+                                 required="true"
+                                 requiredMessage="Período é obrigatório."/>
+                </p:panelGrid>
+            </p:fieldset>
+
+            <!-- Botões -->
+            <div style="text-align:center; margin:10px 0;">
+                <p:commandButton value="Salvar"
+                                 styleClass="btn-salvar"
+                                 action="#{matriculaBean.salvar}"
+                                 update="formMatricula"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Editar"
+                                 styleClass="btn-editar"
+                                 action="#{matriculaBean.editar}"
+                                 update="formMatricula tabelaMatriculas"
+                                 process="@this"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Excluir"
+                                 styleClass="btn-excluir"
+                                 action="#{matriculaBean.excluir}"
+                                 update="formMatricula tabelaMatriculas"
+                                 process="@this"
+                                 onclick="return confirm('Deseja excluir esta matrícula?')"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Limpar"
+                                 styleClass="btn-limpar"
+                                 action="#{matriculaBean.limpar()}"
+                                 update="formMatricula tabelaMatriculas"
+                                 process="@this"
+                                 resetValues="true"
+                                 style="margin:0 4px;"/>
+            </div>
+
+            <!-- Lista de Matrículas -->
+            <p:fieldset legend="Lista de Matrículas">
+                <h:outputText value="Total: #{matriculaBean.listaMatriculas.size()} registros"
+                              style="font-weight:bold; margin-bottom:8px; display:block"/>
+                <p:dataTable id="tabelaMatriculas"
+                             styleClass="tabela-matricula"
+                             value="#{matriculaBean.listaMatriculas}"
+                             var="m"
+                             selection="#{matriculaBean.matriculaSelecionada}"
+                             selectionMode="single"
+                             paginator="true"
+                             rows="10"
+                             paginatorPosition="bottom"
+                             emptyMessage="Nenhuma matrícula encontrada."
+                             style="width:100%; font-size:13px"
+                             rowKey="#{m.idMatricula}"
+                             rowStyleClass="#{matriculaBean.matriculaSelecionada.idMatricula == m.idMatricula ? 'linha-selecionada' : ''}">
+
+
+                    <p:ajax event="rowSelect"
+                            listener="#{matriculaBean.aoClicarNaLinha}"
+                            update="formMatricula"/>
+
+                    <p:column headerText="Nº Matrícula">
+                        <h:outputText value="#{m.idMatricula}"/>
+                    </p:column>
+
+                    <p:column headerText="Disciplina">
+                        <h:outputText value="#{m.disciplina.nomeDisciplina}"/>
+                    </p:column>
+
+                    <p:column headerText="Aluno">
+                        <h:outputText value="#{m.aluno.nomePessoa}"/>
+                    </p:column>
+
+                    <p:column headerText="Data">
+                        <h:outputText value="#{m.dataMatricula}"/>
+                    </p:column>
+
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{m.valorPago}"/>
+                    </p:column>
+
+                    <p:column headerText="Período">
+                        <h:outputText value="#{m.periodo}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+
+        </h:form>
+    </h:body>
+</html>
