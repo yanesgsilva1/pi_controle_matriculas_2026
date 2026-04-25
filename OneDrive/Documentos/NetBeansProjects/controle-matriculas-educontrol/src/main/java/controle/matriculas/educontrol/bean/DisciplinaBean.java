@@ -131,7 +131,7 @@ public class DisciplinaBean implements Serializable {
 
     public void consultar() {
         try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Disciplina> q = s.createQuery("select d from Disciplina d join fetch d.professor order by d.nomeDisciplina", Disciplina.class);
+            Query<Disciplina> q = s.createQuery("from Disciplina order by nomeDisciplina", Disciplina.class);
             listaDisciplinas = q.list();
         } catch (Exception e) {
             addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao consultar disciplinas.");
