@@ -21,11 +21,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "disciplina")
 public class Disciplina implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
-    
+
     @Column(nullable = false, length = 100)
     private String nomeDisciplina;
 
@@ -38,6 +38,12 @@ public class Disciplina implements Serializable {
 
     @Column(nullable = false)
     private Integer limiteAlunos;
+    
+    @Column (nullable = false)
+    private int totalMatriculas;
+    
+    @Column (nullable = false)
+    private int vagasRestantes;
 
     public Integer getCodigo() {
         return codigo;
@@ -78,6 +84,23 @@ public class Disciplina implements Serializable {
     public void setLimiteAlunos(Integer limiteAlunos) {
         this.limiteAlunos = limiteAlunos;
     }
+
+    public int getTotalMatriculas() {
+        return totalMatriculas;
+    }
+
+    public void setTotalMatriculas(int totalMatriculas) {
+        this.totalMatriculas = totalMatriculas;
+    }
+
+    public int getVagasRestantes() {
+        return vagasRestantes;
+    }
+
+    public void setVagasRestantes(int vagasRestantes) {
+        this.vagasRestantes = vagasRestantes;
+    }
     
     
+
 }
