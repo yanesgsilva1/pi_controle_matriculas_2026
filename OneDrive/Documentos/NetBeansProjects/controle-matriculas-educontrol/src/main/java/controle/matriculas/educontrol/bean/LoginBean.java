@@ -4,6 +4,9 @@
  */
 package controle.matriculas.educontrol.bean;
 
+import controle.matriculas.educontrol.dao.UsuarioDAO;
+import controle.matriculas.educontrol.model.Usuario;
+import controle.matriculas.educontrol.util.SenhaUtil;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -14,7 +17,6 @@ import javax.faces.context.FacesContext;
  *
  * @author leo
  */
-
 @ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
@@ -40,8 +42,12 @@ public class LoginBean implements Serializable {
 
     // Ações da tela de login
     public String login() {
-        if ("admin".equals(usuario) && "admin".equals(senha)) {
-            return "menuPrincipal.xhtml?faces-redirect=true"; // redireciona para o menu principal
+
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario u = dao.buscarPorLogin(usuario);
+
+        if (u != null && SenhaUtil.verificarSenha(senha, u.getSenha())) {
+            return "/menuPrincipal?faces-redirect=true";
         } else {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Usuário ou Senha Inválidos", null);

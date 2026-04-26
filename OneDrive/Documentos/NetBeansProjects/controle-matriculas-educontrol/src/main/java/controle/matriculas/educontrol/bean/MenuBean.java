@@ -20,7 +20,6 @@ public class MenuBean implements Serializable {
     private String paginaAtual = "";
 
     //  Navegação - Cadastros
-
     public String navegarAlunos() {
         this.paginaAtual = "alunos";
         return "/cadastros/alunos?faces-redirect=true";
@@ -47,7 +46,6 @@ public class MenuBean implements Serializable {
     }
 
     //  Navegação - Relatórios
-
     public String navegarRelatorioMatriculas() {
         this.paginaAtual = "rel-matriculas";
         return "/relatorios/matriculas?faces-redirect=true";
@@ -71,7 +69,7 @@ public class MenuBean implements Serializable {
 
     public String navegarUsuarios() {
         this.paginaAtual = "usuarios";
-        return "/sistema/usuarios?faces-redirect=true";
+        return "/usuario?faces-redirect=true";
     }
 
     public String sair() {

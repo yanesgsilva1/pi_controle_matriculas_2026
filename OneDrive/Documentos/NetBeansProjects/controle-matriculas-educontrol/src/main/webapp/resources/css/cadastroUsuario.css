@@ -1,0 +1,101 @@
+/* =============================================
+   Cadastro de Usuário - cadastroUsuario.css
+   ============================================= */
+
+* { box-sizing: border-box; }
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+/* FIELDSET */
+.ui-fieldset {
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    margin: 8px !important;
+    padding: 10px !important;
+    background: #ffffff !important;
+}
+
+.ui-fieldset .ui-fieldset-legend {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #2980b9 !important;
+    padding: 2px 6px !important;
+    background: #ffffff !important;
+}
+
+/* PANELGRID */
+.ui-panelgrid,
+.ui-panelgrid td,
+.ui-panelgrid tr,
+.ui-panelgrid .ui-widget-content,
+.ui-panelgrid .ui-panelgrid-cell {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.ui-panelgrid td {
+    padding: 5px 4px !important;
+    vertical-align: middle !important;
+}
+
+.ui-panelgrid td:first-child {
+    font-weight: bold !important;
+    color: #333 !important;
+    white-space: nowrap !important;
+    width: 140px !important;
+}
+
+/* CAMPOS */
+.ui-inputfield,
+.ui-inputtext,
+.ui-password input {
+    width: 500px !important;
+    height: 26px !important;
+    padding: 2px 6px !important;
+    border: 1px solid #a0b4c8 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+}
+
+/* BOTÕES */
+.btn-salvar,
+.btn-excluir {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    height: 30px !important;
+    min-width: 90px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 16px !important;
+    box-shadow: none !important;
+    background-image: none !important;
+}
+
+.btn-salvar {
+    background-color: #27ae60 !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-salvar:hover { background-color: #1e8449 !important; }
+
+.btn-excluir {
+    background-color: #e74c3c !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-excluir:hover { background-color: #c0392b !important; }
+
+.btn-salvar .ui-button-text,
+.btn-excluir .ui-button-text {
+    padding: 0 !important;
+}
+

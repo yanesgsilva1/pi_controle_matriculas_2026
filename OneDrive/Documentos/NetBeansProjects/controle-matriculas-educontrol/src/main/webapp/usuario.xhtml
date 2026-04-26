@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Cadastro de Usuário</title>
+        <h:outputStylesheet library="css" name="cadastroUsuario.css"/>
+    </h:head>
+
+    <h:body>
+        <h:form id="formUsuario">
+
+            <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+
+            <!-- SEÇÃO: Dados do Usuário -->
+            <p:fieldset legend="Cadastro de Novo Usuário" style="margin-bottom:8px">
+                <p:panelGrid columns="2" columnClasses="label,value-right">
+
+                    <p:outputLabel for="nome" value="Nome Completo:"/>
+                    <p:inputText id="nome"
+                                 value="#{usuarioBean.usuario.nome}"
+                                 required="true"
+                                 requiredMessage="Nome é obrigatório."/>
+
+                    <p:outputLabel for="cargo" value="Cargo:"/>
+                    <p:inputText id="cargo"
+                                 value="#{usuarioBean.usuario.cargo}"
+                                 required="true"
+                                 requiredMessage="Cargo é obrigatório."/>
+
+                    <p:outputLabel for="email" value="E-mail:"/>
+                    <p:inputText id="email"
+                                 value="#{usuarioBean.usuario.email}"
+                                 required="true"
+                                 requiredMessage="E-mail é obrigatório."/>
+
+                    <p:outputLabel for="login" value="Login:"/>
+                    <p:inputText id="login"
+                                 value="#{usuarioBean.usuario.login}"
+                                 required="true"
+                                 requiredMessage="Login é obrigatório."/>
+
+                    <p:outputLabel for="senha" value="Senha:"/>
+                    <p:password id="senha"
+                                value="#{usuarioBean.usuario.senha}"
+                                required="true"
+                                requiredMessage="Senha é obrigatória."
+                                feedback="false"/>
+
+                    <p:outputLabel for="confirmarSenha" value="Confirmar Senha:"/>
+                    <p:password id="confirmarSenha"
+                                value="#{usuarioBean.confirmarSenha}"
+                                required="true"
+                                requiredMessage="Confirmação de senha é obrigatória."
+                                feedback="false"/>
+
+                </p:panelGrid>
+
+                <div style="text-align:center; margin-top:10px; font-size:12px; color:#666;">
+                    * Campos obrigatórios
+                </div>
+            </p:fieldset>
+
+            <!-- BOTÕES -->
+            <div style="text-align:center; margin:10px 0;">
+                <p:commandButton value="Salvar"
+                                 styleClass="btn-salvar"
+                                 action="#{usuarioBean.salvar}"
+                                 update="formUsuario"
+                                 style="margin:0 4px;"/>
+
+                <p:commandButton value="Cancelar"
+                                 styleClass="btn-excluir"
+                                 action="#{usuarioBean.cancelar}"
+                                 ajax="false"
+                                 immediate="true"
+                                 style="margin:0 4px;"/>
+            </div>
+
+        </h:form>
+    </h:body>
+</html>
