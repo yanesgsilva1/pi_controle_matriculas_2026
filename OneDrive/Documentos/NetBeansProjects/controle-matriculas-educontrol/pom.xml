@@ -7,89 +7,133 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>controle-matriculas-educontrol-1.0-SNAPSHOT</name>
-    
- <properties>
+
+    <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
- 
+
     <dependencies>
- 
-        <!-- JSF 2.2 (provided pelo GlassFish) -->
+        <!-- Java EE 8 API (Escopo provided pois o servidor já fornece) -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSF e PrimeFaces -->
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>javax.faces-api</artifactId>
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
- 
-        <!-- PrimeFaces 6.2 (sem tema separado - CSS customizado) -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>6.2</version>
         </dependency>
- 
-        <!-- Hibernate ORM 5 -->
+
+        <!-- HIBERNATE CORE (Versão compatível com Java 8) -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.33.Final</version>
         </dependency>
- 
+
+        <!-- JBOSS LOGGING (Travado para evitar erro de versão 55.0 do Java 11) -->
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-            <version>3.5.0.Final</version>
+            <version>3.4.1.Final</version>
         </dependency>
-        <!-- JPA 2.2 API (provided pelo GlassFish) -->
+
+        <!-- JPA API -->
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
-            <scope>provided</scope>
         </dependency>
- 
-        <!-- MySQL Connector/J (novo groupId oficial) -->
+
+        <!-- Driver MySQL -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
- 
-        <!-- Servlet API (provided pelo GlassFish) -->
+
+        <!-- Servlet e JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
- 
-        <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
- 
-        <!-- EL API (provided pelo GlassFish) -->
+
+        <!-- Injeção de Dependência -->
         <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>3.0.0</version>
-            <scope>provided</scope>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
         </dependency>
- 
+
+        <!-- Segurança (BCrypt) -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
+        <!-- Jaxen (Auxiliar para consultas que o Hibernate pode exigir) -->
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        
+        <!-- =============================================================== -->
+        <!-- DEPENDÊNCIAS PARA EXPORTAÇÃO DE RELATÓRIOS (PRIMEFACES 6.2)     -->
+        <!-- =============================================================== -->
+        
+        <!-- Apache POI (Motor para gerar arquivos EXCEL) -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <!-- iText (Motor para gerar arquivos PDF com exclusão de conflitos velhos) -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bcmail-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bcprov-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
     </dependencies>
- 
+
     <build>
-        <!-- Garante que src/main/resources seja incluído no deploy -->
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -99,7 +143,15 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
- 
 </project>

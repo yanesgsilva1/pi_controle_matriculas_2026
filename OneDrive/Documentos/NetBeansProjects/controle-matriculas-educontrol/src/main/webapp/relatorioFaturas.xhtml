@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Relatório de Faturas - EduControl</title>
+        <style>
+            .ui-datatable { margin-top: 15px; }
+            .painel-botoes { margin-bottom: 15px; gap: 10px; display: flex; }
+        </style>
+    </h:head>
+    
+    <h:body>
+        <h:form id="formRelatorio">
+            <p:panel header="EduControl - Relatório Gerencial de Faturas">
+                
+                <!-- Botões para baixar o relatório -->
+                <div class="painel-botoes">
+                    <h:commandLink>
+                        <p:button value="Exportar para Excel (.xls)" styleClass="ui-button-success" icon="pi pi-file-excel" />
+                        <p:dataExporter type="xls" target="tabelaFaturas" fileName="relatorio_faturas_educontrol" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:button value="Exportar para PDF" styleClass="ui-button-danger" icon="pi pi-file-pdf" />
+                        <p:dataExporter type="pdf" target="tabelaFaturas" fileName="relatorio_faturas_educontrol" />
+                    </h:commandLink>
+                </div>
+
+                <!-- Tabela de dados integrada com o FaturaBean -->
+                <p:dataTable id="tabelaFaturas" value="#{faturaBean.faturas}" var="fatura" 
+                             paginator="true" rows="10" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} faturas"
+                             rowsPerPageTemplate="5,10,20"
+                             emptyMessage="Nenhuma fatura encontrada no sistema.">
+                    
+                    <p:column headerText="ID" style="width: 80px; text-align: center;">
+                        <h:outputText value="#{fatura.id}" />
+                    </p:column>
+
+                    <p:column headerText="Nome do Aluno" filterBy="#{fatura.alunoNome}" filterMatchMode="contains">
+                        <h:outputText value="#{fatura.alunoNome}" />
+                    </p:column>
+
+                    <p:column headerText="Data de Vencimento" style="text-align: center;">
+                        <h:outputText value="#{fatura.dataVencimento}" />
+                    </p:column>
+
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{fatura.valor}">
+                            <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Status" filterBy="#{fatura.status}" filterMatchMode="equals" style="text-align: center;">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('tabelaFaturas').filter()" styleClass="ui-column-filter">
+                                <f:selectItem itemLabel="Todos" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItem itemLabel="PAGO" itemValue="PAGO" />
+                                <f:selectItem itemLabel="PENDENTE" itemValue="PENDENTE" />
+                                <f:selectItem itemLabel="ATRASADO" itemValue="ATRASADO" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{fatura.status}" />
+                    </p:column>
+                    
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
