@@ -99,3 +99,44 @@ html, body {
     padding: 0 !important;
 }
 
+
+/* -----------------------------------------------
+   BOTÃO VOLTAR
+----------------------------------------------- */
+.btn-voltar {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    height: 30px !important;
+    min-width: 36px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 12px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+    filter: none !important;
+    background-color: #2980b9 !important;
+    border: none !important;
+    color: white !important;
+}
+.btn-voltar:hover { background-color: #1f6391 !important; }
+.btn-voltar .ui-button-text { padding: 0 !important; }
+
+/* -----------------------------------------------
+   SETA DO COMBOBOX (selectonemenu)
+----------------------------------------------- */
+.ui-selectonemenu .ui-selectonemenu-trigger span.ui-icon-triangle-1-s {
+    background-image: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-top: 6px solid #333 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    font-size: 0 !important;
+    overflow: visible !important;
+}

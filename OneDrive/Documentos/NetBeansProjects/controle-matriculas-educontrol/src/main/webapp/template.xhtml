@@ -2,16 +2,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Sistema de Controle de Matrícula</title>
+        <title><ui:insert name="title">Sistema de Controle de Matrícula</ui:insert></title>
         <h:outputStylesheet name="css/menu.css"/>
+        <ui:insert name="estilos"/>
     </h:head>
 
     <h:body>
+
+        <!-- BARRA DE NAVEGAÇÃO -->
         <div class="menubar-wrapper">
             <h:form id="frmMenu">
                 <p:menubar styleClass="custom-menubar">
@@ -26,7 +31,8 @@
                         <p:menuitem value="Faturamento por Período"   url="relatFaturamento.xhtml"/>
                     </p:submenu>
                     <p:submenu label="Sistema">
-                        <p:menuitem value="Usuários" url="usuario.xhtml"/>
+                        <p:menuitem value="Menu Principal" url="menuPrincipal.xhtml"/>
+                        <p:menuitem value="Usuários"       url="usuario.xhtml"/>
                         <p:separator/>
                         <p:menuitem value="Sair" action="#{menuBean.sair}" ajax="false"/>
                     </p:submenu>
@@ -34,8 +40,10 @@
             </h:form>
         </div>
 
-        <div class="main-content-menu">
-            <h:graphicImage library="images" name="logo_educontrol.png" alt="EduControl"/>
+        <!-- CONTEÚDO DA PÁGINA -->
+        <div class="main-content">
+            <ui:insert name="conteudo"/>
         </div>
+
     </h:body>
 </html>

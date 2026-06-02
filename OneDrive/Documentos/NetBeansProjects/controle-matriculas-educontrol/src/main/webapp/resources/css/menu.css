@@ -4,7 +4,7 @@
  
 html, body {
     height: 100%;
-    background-color: #EBEBEB;
+    background-color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 13px;
 }
@@ -14,7 +14,7 @@ html, body {
 .menubar-wrapper { width: 100%; }
  
 .custom-menubar.ui-menubar {
-    background: #1E73BE !important;
+    background: #2980b9 !important;
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
@@ -112,5 +112,21 @@ html, body {
     clear: both;
     width: 100%;
     height: calc(100vh - 28px);
-    background-color: #EBEBEB;
+    background-color: #ffffff;
+}
+/* === BACKGROUND DO MENU PRINCIPAL === */
+
+.main-content-menu {
+    clear: both;
+    width: 100%;
+    height: calc(100vh - 28px);
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content-menu img {
+    width: 650px;
+    opacity: 0.35;
 }

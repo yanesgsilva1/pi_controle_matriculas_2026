@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="title">Faturamento por Período</ui:define>
+
+        <ui:define name="estilos">
+            <h:outputStylesheet library="css" name="relatorios.css"/>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="formRelatorio">
+
+                <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+
+                <!-- FILTROS -->
+                <p:fieldset legend="Filtros de Período" style="margin-bottom:8px;">
+                    <p:panelGrid columns="2" columnClasses="label,value-right">
+
+                        <p:outputLabel for="dataInicio" value="Data Início (YYYY-MM-DD):"/>
+                        <p:inputText id="dataInicio"
+                                     value="#{relatFaturamentoBean.dataInicio}"
+                                     required="true"
+                                     requiredMessage="Data início é obrigatória."
+                                     placeholder="2025-01-01"/>
+
+                        <p:outputLabel for="dataFim" value="Data Fim (YYYY-MM-DD):"/>
+                        <p:inputText id="dataFim"
+                                     value="#{relatFaturamentoBean.dataFim}"
+                                     required="true"
+                                     requiredMessage="Data fim é obrigatória."
+                                     placeholder="2025-12-31"/>
+
+                        <p:outputLabel for="disciplina" value="Disciplina:"/>
+                        <p:selectOneMenu id="disciplina"
+                                         value="#{relatFaturamentoBean.idDisciplinaSelecionada}"
+                                         style="width:500px">
+                            <f:selectItem itemLabel="Todas as disciplinas" itemValue="#{null}"/>
+                            <f:selectItems value="#{relatFaturamentoBean.listaDisciplinas}"
+                                           var="d"
+                                           itemLabel="#{d.nomeDisciplina} (#{d.codigo})"
+                                           itemValue="#{d.codigo}"/>
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+                </p:fieldset>
+
+                <!-- BOTÕES -->
+                <div style="text-align:center; margin:10px 0;">
+                    <p:commandButton value="Consultar Faturamento"
+                                     styleClass="btn-editar"
+                                     action="#{relatFaturamentoBean.consultar}"
+                                     update="formRelatorio"
+                                     style="margin:0 6px;"/>
+
+                    <p:commandButton value="Limpar"
+                                     styleClass="btn-relat-secundario"
+                                     action="#{relatFaturamentoBean.limpar}"
+                                     update="formRelatorio"
+                                     process="@this"
+                                     resetValues="true"
+                                     style="margin:0 6px;"/>
+                </div>
+
+                <!-- RESULTADO -->
+                <p:fieldset legend="Resultado do Faturamento"
+                            rendered="#{not empty relatFaturamentoBean.resultados}">
+
+                    <p:dataTable id="tabelaFaturamento"
+                                 value="#{relatFaturamentoBean.resultados}"
+                                 var="r"
+                                 style="width:100%"
+                                 styleClass="tabela-relatorio"
+                                 emptyMessage="Nenhum resultado encontrado.">
+
+                        <p:column headerText="Disciplina">
+                            <h:outputText value="#{r.nomeDisciplina}"/>
+                        </p:column>
+
+                        <p:column headerText="Período" style="width:120px; text-align:center">
+                            <h:outputText value="#{r.periodo}"/>
+                        </p:column>
+
+                        <p:column headerText="Total Matrículas" style="width:140px; text-align:center">
+                            <h:outputText value="#{r.totalMatriculas}"/>
+                        </p:column>
+
+                        <p:column headerText="Faturamento Total" style="width:160px; text-align:right">
+                            <h:outputText value="#{r.faturamentoTotal}">
+                                <f:convertNumber type="currency" currencySymbol="R$ "
+                                                 groupingUsed="true" minFractionDigits="2"/>
+                            </h:outputText>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <!-- Linha de total geral -->
+                    <div style="text-align:right; font-weight:bold; margin-top:8px; padding-right:4px;">
+                        Total Matrículas: #{relatFaturamentoBean.totalMatriculasGeral} |
+                        Faturamento Total:
+                        <h:outputText value="#{relatFaturamentoBean.totalGeral}">
+                            <f:convertNumber type="currency" currencySymbol="R$ "
+                                             groupingUsed="true" minFractionDigits="2"/>
+                        </h:outputText>
+                    </div>
+
+                </p:fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

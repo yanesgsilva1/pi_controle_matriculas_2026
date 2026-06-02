@@ -3,151 +3,156 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <h:head>
-        <title>Cadastro de Pessoas</title>
-        <h:outputStylesheet library="css" name="cadastroPessoa.css"/>
-    </h:head>
+    <ui:composition template="template.xhtml">
 
-    <h:body>
-        <h:form id="formPessoa">
+        <ui:define name="title">Cadastro de Pessoas</ui:define>
 
-            <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+        <ui:define name="estilos">
+            <h:outputStylesheet library="css" name="cadastroPessoa.css"/>
+        </ui:define>
 
-            <!-- SEÇÃO: Dados da Pessoa -->
-            <p:fieldset legend="Dados da Pessoa" style="margin-bottom:8px">
-                <p:panelGrid columns="2" columnClasses="label,value-right">
+        <ui:define name="conteudo">
+            <h:form id="formPessoa">
 
-                    <p:outputLabel for="nome" value="Nome:"/>
-                    <p:inputText id="nome"
-                                 value="#{pessoaBean.pessoa.nomePessoa}"
-                                 required="true"
-                                 requiredMessage="Nome é obrigatório."/>
+                <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
 
-                    <p:outputLabel for="endereco" value="Endereço:"/>
-                    <p:inputText id="endereco"
-                                 value="#{pessoaBean.pessoa.endereco}"/>
+                <!-- SEÇÃO: Dados da Pessoa -->
+                <p:fieldset legend="Dados da Pessoa" style="margin-bottom:8px;">
+                    <p:panelGrid columns="2" columnClasses="label,value-right">
 
-                    <p:outputLabel for="uf" value="UF:"/>
-                    <p:inputText id="uf"
-                                 value="#{pessoaBean.pessoa.uf}"
-                                 maxlength="2"/>
-
-                    <p:outputLabel for="telefone" value="Telefone:"/>
-                    <p:inputMask id="telefone"
-                                 value="#{pessoaBean.pessoa.telefone}"
-                                 mask="(99) 99999-9999"/>
-
-                    <p:outputLabel for="cpf" value="CPF:"/>
-                    <p:inputMask id="cpf"
-                                 value="#{pessoaBean.pessoa.cpf}"
-                                 mask="999.999.999-99"
-                                 required="true"
-                                 requiredMessage="CPF é obrigatório."/>
-
-                    <p:outputLabel for="email" value="E-mail:"/>
-                    <p:inputText id="email"
-                                 value="#{pessoaBean.pessoa.email}"/>
-
-                    <p:outputLabel for="tipo" value="Tipo:"/>
-                    <p:selectOneMenu id="tipo"
-                                     value="#{pessoaBean.pessoa.tipo}"
+                        <p:outputLabel for="nome" value="Nome:"/>
+                        <p:inputText id="nome"
+                                     value="#{pessoaBean.pessoa.nomePessoa}"
                                      required="true"
-                                     requiredMessage="Tipo é obrigatório."
-                                     style="width:500px">
-                        <f:selectItem itemLabel="Selecione..." itemValue=""
-                                      noSelectionOption="true"/>
-                        <f:selectItem itemLabel="ALUNO"     itemValue="ALUNO"/>
-                        <f:selectItem itemLabel="PROFESSOR" itemValue="PROFESSOR"/>
-                    </p:selectOneMenu>
+                                     requiredMessage="Nome é obrigatório."/>
 
-                </p:panelGrid>
-            </p:fieldset>
+                        <p:outputLabel for="endereco" value="Endereço:"/>
+                        <p:inputText id="endereco"
+                                     value="#{pessoaBean.pessoa.endereco}"/>
 
-            <!-- BOTÕES -->
-            <div style="text-align:center; margin:10px 0;">
-                <p:commandButton value="Salvar"
-                                 styleClass="btn-salvar"
-                                 action="#{pessoaBean.salvar}"
-                                 update="formPessoa"
-                                 style="margin:0 4px;"/>
+                        <p:outputLabel for="uf" value="UF:"/>
+                        <p:inputText id="uf"
+                                     value="#{pessoaBean.pessoa.uf}"
+                                     maxlength="2"/>
 
-                <p:commandButton value="Editar"
-                                 styleClass="btn-editar"
-                                 action="#{pessoaBean.editar}"
-                                 update="formPessoa"
-                                 process="@this"
-                                 immediate="true"
-                                 style="margin:0 4px;"/>
+                        <p:outputLabel for="telefone" value="Telefone:"/>
+                        <p:inputMask id="telefone"
+                                     value="#{pessoaBean.pessoa.telefone}"
+                                     mask="(99) 99999-9999"/>
 
-                <p:commandButton value="Excluir"
-                                 styleClass="btn-excluir"
-                                 action="#{pessoaBean.excluir}"
-                                 update="formPessoa"
-                                 process="@this"
-                                 onclick="return confirm('Deseja excluir esta pessoa?')"
-                                 style="margin:0 4px;"/>
+                        <p:outputLabel for="cpf" value="CPF:"/>
+                        <p:inputMask id="cpf"
+                                     value="#{pessoaBean.pessoa.cpf}"
+                                     mask="999.999.999-99"
+                                     required="true"
+                                     requiredMessage="CPF é obrigatório."/>
 
-                <p:commandButton value="Limpar"
-                                 styleClass="btn-limpar"
-                                 action="#{pessoaBean.limpar}"
-                                 update="formPessoa"
-                                 process="@this"
-                                 resetValues="true"
-                                 style="margin:0 4px;"/>
-            </div>
+                        <p:outputLabel for="email" value="E-mail:"/>
+                        <p:inputText id="email"
+                                     value="#{pessoaBean.pessoa.email}"/>
 
-            <!-- SEÇÃO: Lista de Pessoas -->
-            <p:fieldset legend="Lista de Pessoas">
-                <h:outputText value="Total: #{pessoaBean.totalRegistros} registros"
-                              style="font-weight:bold; margin-bottom:8px; display:block"/>
+                        <p:outputLabel for="tipo" value="Tipo:"/>
+                        <p:selectOneMenu id="tipo"
+                                         value="#{pessoaBean.pessoa.tipo}"
+                                         required="true"
+                                         requiredMessage="Tipo é obrigatório."
+                                         style="width:500px">
+                            <f:selectItem itemLabel="Selecione..." itemValue=""
+                                          noSelectionOption="true"/>
+                            <f:selectItem itemLabel="ALUNO"     itemValue="ALUNO"/>
+                            <f:selectItem itemLabel="PROFESSOR" itemValue="PROFESSOR"/>
+                        </p:selectOneMenu>
 
-                <p:dataTable id="tabelaPessoas"
-                             styleClass="tabela-pessoas"
-                             value="#{pessoaBean.listaPessoas}"
-                             var="p"
-                             paginator="true"
-                             rows="10"
-                             paginatorPosition="bottom"
-                             emptyMessage="Nenhuma pessoa encontrada."
-                             style="width:100%; font-size:13px"
-                             selectionMode="single"
-                             selection="#{pessoaBean.pessoaSelecionada}"
-                             rowKey="#{p.idPessoa}"
-                             rowStyleClass="#{pessoaBean.idPessoaSelecionada == p.idPessoa ? 'linha-selecionada' : ''}">
+                    </p:panelGrid>
+                </p:fieldset>
 
-                    <p:ajax event="rowSelect"
-                            listener="#{pessoaBean.aoClicarNaLinha}"
-                            update="formPessoa"/>
+                <!-- BOTÕES -->
+                <div style="text-align:center; margin:10px 0;">
+                    <p:commandButton value="Salvar"
+                                     styleClass="btn-salvar"
+                                     action="#{pessoaBean.salvar}"
+                                     update="formPessoa"
+                                     style="margin:0 4px;"/>
 
-                    <p:column headerText="ID" style="width:50px; text-align:center">
-                        <h:outputText value="#{p.idPessoa}"/>
-                    </p:column>
+                    <p:commandButton value="Editar"
+                                     styleClass="btn-editar"
+                                     action="#{pessoaBean.editar}"
+                                     update="formPessoa"
+                                     process="@this"
+                                     immediate="true"
+                                     style="margin:0 4px;"/>
 
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{p.nomePessoa}"/>
-                    </p:column>
+                    <p:commandButton value="Excluir"
+                                     styleClass="btn-excluir"
+                                     action="#{pessoaBean.excluir}"
+                                     update="formPessoa"
+                                     process="@this"
+                                     onclick="return confirm('Deseja excluir esta pessoa?')"
+                                     style="margin:0 4px;"/>
 
-                    <p:column headerText="CPF" style="width:140px">
-                        <h:outputText value="#{p.cpf}"/>
-                    </p:column>
+                    <p:commandButton value="Limpar"
+                                     styleClass="btn-limpar"
+                                     action="#{pessoaBean.limpar}"
+                                     update="formPessoa"
+                                     process="@this"
+                                     resetValues="true"
+                                     style="margin:0 4px;"/>
+                </div>
 
-                    <p:column headerText="Telefone" style="width:140px">
-                        <h:outputText value="#{p.telefone}"/>
-                    </p:column>
+                <!-- SEÇÃO: Lista de Pessoas -->
+                <p:fieldset legend="Lista de Pessoas">
+                    <h:outputText value="Total: #{pessoaBean.totalRegistros} registros"
+                                  style="font-weight:bold; margin-bottom:8px; display:block"/>
 
-                    <p:column headerText="E-mail">
-                        <h:outputText value="#{p.email}"/>
-                    </p:column>
+                    <p:dataTable id="tabelaPessoas"
+                                 styleClass="tabela-pessoas"
+                                 value="#{pessoaBean.listaPessoas}"
+                                 var="p"
+                                 paginator="true"
+                                 rows="10"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="Nenhuma pessoa encontrada."
+                                 style="width:100%; font-size:13px"
+                                 selectionMode="single"
+                                 selection="#{pessoaBean.pessoaSelecionada}"
+                                 rowKey="#{p.idPessoa}"
+                                 rowStyleClass="#{pessoaBean.idPessoaSelecionada == p.idPessoa ? 'linha-selecionada' : ''}">
 
-                    <p:column headerText="Tipo" style="width:100px; text-align:center">
-                        <h:outputText value="#{p.tipo}"/>
-                    </p:column>
+                        <p:ajax event="rowSelect"
+                                listener="#{pessoaBean.aoClicarNaLinha}"
+                                update="formPessoa"/>
 
-                </p:dataTable>
-            </p:fieldset>
-        </h:form>
-    </h:body>
+                        <p:column headerText="ID" style="width:50px; text-align:center">
+                            <h:outputText value="#{p.idPessoa}"/>
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{p.nomePessoa}"/>
+                        </p:column>
+
+                        <p:column headerText="CPF" style="width:140px">
+                            <h:outputText value="#{p.cpf}"/>
+                        </p:column>
+
+                        <p:column headerText="Telefone" style="width:140px">
+                            <h:outputText value="#{p.telefone}"/>
+                        </p:column>
+
+                        <p:column headerText="E-mail">
+                            <h:outputText value="#{p.email}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo" style="width:100px; text-align:center">
+                            <h:outputText value="#{p.tipo}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:fieldset>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
 </html>
-

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="title">Relatório de Disciplinas por Aluno</ui:define>
+
+        <ui:define name="estilos">
+            <h:outputStylesheet library="css" name="relatorios.css"/>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="formRelatorioAluno">
+
+                <p:messages id="msgs" autoUpdate="true" closable="true" style="margin-bottom:6px"/>
+
+                <!-- Campo de seleção do aluno -->
+                <p:fieldset legend="Selecionar Aluno" style="margin-bottom:8px;">
+                    <p:panelGrid columns="2" columnClasses="label,value-right">
+
+                        <p:outputLabel for="aluno" value="Aluno:"/>
+                        <p:selectOneMenu id="aluno"
+                                         value="#{relatDiscipAlunoBean.idAlunoSelecionado}"
+                                         style="width:400px"
+                                         requiredMessage="Selecione um aluno.">
+                            <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{relatDiscipAlunoBean.listaAlunos}"
+                                           var="a"
+                                           itemLabel="#{a.nomePessoa} (ID: #{a.idPessoa})"
+                                           itemValue="#{a.idPessoa}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+
+                    <div style="text-align:center; margin:10px 0;">
+                        <p:commandButton value="Consultar"
+                                         styleClass="btn-editar"
+                                         action="#{relatDiscipAlunoBean.consultar}"
+                                         update="formRelatorioAluno"
+                                         style="margin:0 6px;"/>
+                        <p:commandButton value="Mostrar Todos"
+                                         styleClass="btn-relat-secundario"
+                                         action="#{relatDiscipAlunoBean.consultarTodos}"
+                                         update="formRelatorioAluno"
+                                         process="@this"
+                                         style="margin:0 6px;"/>
+                    </div>
+                </p:fieldset>
+
+                <!-- SEÇÃO: Resultado da Consulta -->
+                <p:fieldset legend="Resultado da Consulta">
+                    <h:outputText value="Disciplinas cursadas por Aluno - #{relatDiscipAlunoBean.totalMatriculas} matrícula(s)"
+                                  style="font-weight:bold; margin-bottom:8px; display:block"/>
+
+                    <p:dataTable id="tabelaRelatorioAluno"
+                                 styleClass="tabela-relatorio"
+                                 value="#{relatDiscipAlunoBean.listaRelatorio}"
+                                 var="m"
+                                 emptyMessage="Nenhuma matrícula encontrada."
+                                 paginator="true"
+                                 rows="10"
+                                 paginatorPosition="bottom"
+                                 style="width:100%; font-size:13px">
+
+                        <p:column headerText="Nº Matrícula" style="width:80px; text-align:center">
+                            <h:outputText value="#{m.idMatricula}"/>
+                        </p:column>
+
+                        <p:column headerText="Disciplina">
+                            <h:outputText value="#{m.disciplina.nomeDisciplina}"/>
+                        </p:column>
+
+                        <p:column headerText="Professor">
+                            <h:outputText value="#{m.disciplina.professor.nomePessoa}"/>
+                        </p:column>
+
+                        <p:column headerText="Data Matrícula" style="width:120px; text-align:center">
+                            <h:outputText value="#{m.dataMatricula}">
+                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Valor Pago" style="width:120px; text-align:center">
+                            <h:outputText value="R$ #{m.valorPago}">
+                                <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR"/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Período" style="width:120px; text-align:center">
+                            <h:outputText value="#{m.periodo}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:fieldset>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+</html>

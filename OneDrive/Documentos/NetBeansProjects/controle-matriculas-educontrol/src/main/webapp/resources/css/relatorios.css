@@ -95,6 +95,11 @@ html, body {
     justify-content: center !important;
 }
 
+.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    background-image: none !important;
+    font-family: inherit !important;
+}
+
 .ui-selectonemenu .ui-selectonemenu-trigger span {
     display: block !important;
     visibility: visible !important;
@@ -140,8 +145,8 @@ html, body {
 .btn-excluir { background-color: #e74c3c !important; border: none !important; color: white !important; }
 .btn-excluir:hover { background-color: #c0392b !important; }
 
-.btn-limpar { background-color: #ffffff !important; border: 1px solid #cccccc !important; color: #333 !important; }
-.btn-limpar:hover { background-color: #f0f0f0 !important; }
+.btn-limpar { background-color: #ffffff !important; border: 1px solid #2980b9 !important; color: #2980b9 !important; }
+.btn-limpar:hover { background-color: #eaf4fb !important; }
 
 .btn-salvar .ui-button-text,
 .btn-editar .ui-button-text,
@@ -159,11 +164,11 @@ html, body {
 }
 
 .tabela-relatorio thead th {
-    background-color: #2c5282 !important;
+    background-color: #2980b9 !important;
     color: #ffffff !important;
     font-weight: bold !important;
     padding: 6px 8px !important;
-    border: 1px solid #1a3a5c !important;
+    border: 1px solid #1f6391 !important;
     text-align: center !important;
 }
 
@@ -190,4 +195,74 @@ html, body {
     border: none !important;
     padding: 4px 0 !important;
     font-size: 12px !important;
+}
+/* -----------------------------------------------
+   BOTÃO VOLTAR
+----------------------------------------------- */
+.btn-voltar {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    height: 30px !important;
+    min-width: 36px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 12px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+    filter: none !important;
+    background-color: #2980b9 !important;
+    border: none !important;
+    color: white !important;
+}
+.btn-voltar:hover { background-color: #1f6391 !important; }
+.btn-voltar .ui-button-text { padding: 0 !important; }
+
+/* -----------------------------------------------
+   SETA DO COMBOBOX (selectonemenu)
+----------------------------------------------- */
+.ui-selectonemenu .ui-selectonemenu-trigger span.ui-icon-triangle-1-s {
+    background-image: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-top: 6px solid #333 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    font-size: 0 !important;
+    overflow: visible !important;
+}
+
+/* -----------------------------------------------
+   BOTÃO SECUNDÁRIO DOS RELATÓRIOS
+   (branco com borda azul)
+----------------------------------------------- */
+.btn-relat-secundario {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    height: 30px !important;
+    min-width: 90px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 16px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+    filter: none !important;
+    background-color: #ffffff !important;
+    border: 1px solid #2980b9 !important;
+    color: #2980b9 !important;
+}
+.btn-relat-secundario:hover {
+    background-color: #eaf4fb !important;
+}
+.btn-relat-secundario .ui-button-text {
+    padding: 0 !important;
 }
